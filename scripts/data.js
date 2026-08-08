@@ -1,48 +1,68 @@
 export const products = [
     {
-        id: 'caneca-booster-morango' , 
-        name: 'Caneca Térmica Booster Morango' , 
-        category: 'Bebidas Mistas' , 
-        price: 3500 , 
-        image: 'way/to/img-booster.jpg' 
-    },
-
-    {
-        id: 'caneca-nocal' , 
-        name: 'Caneca Térmica Nocal' , 
-        category: 'Cervejas' , 
-        price: 3000 ,
+        id: 'nocal' , 
+        name: 'Caneca/Copo Personalizado - Nocal', 
+        occasions: ['Casamento', 'Aniversário', 'Pessoal'],
+        sizes: [
+            { id: 'grande', label: 'Grande', price: 5000 },
+            { id: 'pequena-2-bordas', label: 'Pequena (2 bordas)', price: 2500 },
+            { id: 'pequena-1-borda', label: 'Pequena (1 borda)', price: 2000 }
+        ],
         image: 'way/to/img-nocal.jpg' 
     },
 
-
     {
-        id: 'caneca-cuca' , 
-        name: 'Caneca Térmica Cuca' , 
-        category: 'Cervejas' , 
-        price: 3000 , 
-        image: 'way/to/img-cuca.png' 
+        id: 'booster',
+        name: 'Caneca/Copo Personalizado - Booster',
+        occasions: ['Casamento', 'Aniversário', 'Pessoal'],
+        sizes: [
+            { id: 'grande', label: 'Grande', price: 5000 },
+            { id: 'pequena-2-bordas', label: 'Pequena (2 bordas)', price: 2500 },
+            { id: 'pequena-1-borda', label: 'Pequena (1 borda)', price: 2000 }
+    ],
+        flavors: [
+            { id: 'normal', label: 'Normal' },
+            { id: 'morango', label: 'Morango'}
+    ],
+        image: 'way/to-booster.jpg'
     },
 
     {
-        id: 'caneca-redbull', 
-        name: 'Caneca Térmica Red Bull' , 
-        category: 'Energéticos' , 
-        price: 4000 , 
+        id: 'cuca',
+        name: 'Caneca/Copo Personalizada - Cuca',
+        occasions: ['Casamento', 'Aniversário', 'Pessoal'],
+        sizes: [
+            { id: 'grande', label: 'Grande', price: 5000 },
+            { id: 'pequena-2-bordas', label: 'Pequena (2 bordas)', price: 2500 },
+            { id: 'pequena-1-borda', label: 'Pequena (1 borda)', price: 2000 }
+    ],
+        image: 'way/to-cuca.jpg'
+    },
+
+    {
+        id: 'redbull', 
+        name: 'Caneca Térmica Red Bull', 
+        occasions: ['Casamento', 'Aniversário', 'Pessoal'],
+        sizes: [
+            { id: 'grande', label: 'Grande', price: 5000 },
+            { id: 'pequena-2-bordas', label: 'Pequena (2 bordas)', price: 2500 },
+            { id: 'pequena-1-borda', label: 'Pequena (1 borda)', price: 2000 }
+    ],
         image: 'way/to/img-redbull' 
     },
 
 ]
 
+export const occasions = ['Todos', 'Casamento', 'Aniversário', 'Pessoal'];
+
+export const types = ['Todos', 'Caneca', 'Copo'];
+
 export const teams = [
-    'Manchester United',
-    'Barcelona',
-    'Real Madrid',
-    'Bayern Munique',
-    'PSG',
-    'Benfica',
-    'Petro de Luanda',
-    '1º de Agosto',
-    'Outra (Especifique)'
-    
-]
+  'Barcelona',
+  'Manchester United',
+  'Real Madrid',
+  'Petro de Luanda',
+  '1º de Agosto',
+  'Outra (Especifique)'
+];
+

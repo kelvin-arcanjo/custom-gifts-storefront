@@ -37,21 +37,15 @@
                 <div>
                     <label for="product-select">Produto:</label>
                     <select name="productId" id="product-select" required>
-                        <option value="">---Selecione um produto---</option>
                         <!--Opções serão careegadas dinamicamente via JS-->
-
-                        <option value="caneca-nocal">Caneca - Nocal</option>
-                        <option value="lata-booster">Lata Booster - Morango</option>
                     </select>
                 </div>
 
                 <!--Escolha de Equipa-->
                 <div>
+                    <label for="team-select">Equipa / Clube:</label>
                     <select name="team" id="team-select">
-                        <option value="">---Selecione a Equipa---</option>
-                        <option value="barcelona">Barcelona</option>
-                        <option value="real-madrid">Real Madrid</option>
-                        <option value="outra(especifique)">Outra (Especifique)</option>
+                        <!-- As <option> serão geradas dinamicamente pelo render.js -->
                     </select>
                 </div>
 
