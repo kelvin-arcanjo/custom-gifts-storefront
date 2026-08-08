@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Osvaldo Brindes Personalizados</title>
+</head>
+<body>
+    <header>
+      <h1>Osvaldo Brindes Personalizados</h1>
+      <p>Torne o seu evento único, porque o seu Brinde merece ser único!</p>
+    </header>
+
+    <main>
+        <!--Catálogo de Produtos com filtro-->
+        <section id="catalog-section">
+            <h2>Nosso Catálogo</h2>
+
+            <!--Filtros por categoria-->
+            <nav id="category-filters">
+                <button data-category="all">Todos</button>
+                <button data-category="Canecas">Canecas</button>
+                <button data-category="Copos">Copos</button> 
+            </nav>
+
+            <!--Contentor onde o rende.js desenhar os cards dos produtos-->
+            <div id="products-container"></div>
+        </section>
+
+        <!-- Formulário de Personalização -->
+         <section id="customization-section">
+            <h2>Personalize o seu Pedido</h2>
+
+            <form action="" id="order-form">
+                <!--Seleção do Produto-->
+
+                <div>
+                    <label for="product-select">Produto:</label>
+                    <select name="productId" id="product-select" required>
+                        <option value="">---Selecione um produto---</option>
+                        <!--Opções serão careegadas dinamicamente via JS-->
+
+                        <option value="caneca-nocal">Caneca - Nocal</option>
+                        <option value="lata-booster">Lata Booster - Morango</option>
+                    </select>
+                </div>
+
+                <!--Escolha de Equipa-->
+                <div>
+                    <select name="team" id="team-select">
+                        <option value="">---Selecione a Equipa---</option>
+                        <option value="barcelona">Barcelona</option>
+                        <option value="real-madrid">Real Madrid</option>
+                        <option value="outra(especifique)">Outra (Especifique)</option>
+                    </select>
+                </div>
+
+                <!-- Campo condicional se escolher "Outra" -->
+                 <div>
+                    <label for="custom-team">Nome da Equipa:</label>
+                    <input type="text" id="custom-team" name="customTeam" placeholder="Ex.:Juventus">
+                 </div>
+
+                 <!--Nome/Texto para Personalizar -->
+                 <div>
+                    <label for="custom-text">Texto / Nome a Personalizar:</label>
+                    <input type="text" id="custom-text" name="customText" placeholder="Ex: Osvaldo Suend">
+                </div>
+
+                <!-- 4. Quantidade -->
+                <div>
+                    <label for="quantity">Quantidade:</label>
+                    <input type="number" id="quantity" name="quantity" value="1" min="1" required>
+                </div>
+
+                <!-- Botão de submissão -->
+                <button type="submit">Adicionar ao Carrinho</button>
+            </form>
+         </section>
+
+        <!--Resumo ao pedido-->
+        <article id="Checkout-article">
+            <h2>Resumo do Pedido</h2>
+            <!--Contentor onde o render.js vai desenhar os itens add no carinho-->
+
+            <div id="cart-summary"></div>
+
+            <!--Exibição do Total-->
+            <div id="total-container">
+                <span>Total:</span>
+                <span id="cart-total">0 Kz</span>
+            </div>
+
+            <!--Botão pra finalizar o pedido ... via whatsapp-->
+
+            <button id="whatsapp-btn" type="button">
+                Enviar Pedido
+            </button>
+        </article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Osvaldo Brindes</p>
+    </footer>
+</body>
+</html>
