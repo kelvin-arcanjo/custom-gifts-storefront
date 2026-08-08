@@ -8,7 +8,7 @@ export const products = [
             { id: 'pequena-2-bordas', label: 'Pequena (2 bordas)', price: 2500 },
             { id: 'pequena-1-borda', label: 'Pequena (1 borda)', price: 2000 }
         ],
-        image: 'way/to/img-nocal.jpg' 
+        image: 'images/cerveja.jpeg' 
     },
 
     {
@@ -24,7 +24,7 @@ export const products = [
             { id: 'normal', label: 'Normal' },
             { id: 'morango', label: 'Morango'}
     ],
-        image: 'way/to-booster.jpg'
+        image: 'images/cuca.jpeg'
     },
 
     {
@@ -36,7 +36,7 @@ export const products = [
             { id: 'pequena-2-bordas', label: 'Pequena (2 bordas)', price: 2500 },
             { id: 'pequena-1-borda', label: 'Pequena (1 borda)', price: 2000 }
     ],
-        image: 'way/to-cuca.jpg'
+        image: 'images/cuca.jpeg'
     },
 
     {
@@ -48,7 +48,7 @@ export const products = [
             { id: 'pequena-2-bordas', label: 'Pequena (2 bordas)', price: 2500 },
             { id: 'pequena-1-borda', label: 'Pequena (1 borda)', price: 2000 }
     ],
-        image: 'way/to/img-redbull' 
+        image: 'images/cerveja.jpeg' 
     },
 
 ]
