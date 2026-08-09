@@ -1,10 +1,10 @@
+import { addItem } from "./cart.js";
 import { 
-
     renderProducts, 
     renderProductOptions, 
     renderTeamOptions,
-    renderVariantOptions
-
+    renderVariantOptions,
+    renderCartSummary
  } from "./render.js";
 
 // 1. Inicialização/Renderiza os produtos na página;
@@ -12,6 +12,7 @@ renderProducts()
 renderProductOptions()
 renderTeamOptions()
 renderVariantOptions('')
+renderCartSummary()
 
 // 2. Seleciona o container dos produtos;
 const productsContainer = document.getElementById('products-container')
@@ -60,7 +61,9 @@ form
         event.preventDefault()
 
         const dataForm = new FormData(event.target)
-
         const objectDataForm = Object.fromEntries(dataForm)
-        console.log(objectDataForm)
+
+        addItem(objectDataForm)
+        renderCartSummary()
+        form.reset() 
 })
