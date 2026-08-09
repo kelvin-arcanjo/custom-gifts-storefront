@@ -1,19 +1,14 @@
 import { products } from "./data.js";
 
+//Estado  em memória do carrinho;
 export const cart = [];
-
-const exampleItem = {
-    productId: 'caneca-nocal',
-    team: 'Outra (Especifique)',
-    customTeam: 'Sporting Clube da Huíla',
-    customText: 'Osvaldo Jr.',
-    quantity: 2,
-}
 
 export function addItem (formData) {
     const newItem = {
         cartItemId: crypto.randomUUID(),
         productId: formData.productId,
+        sizeId: formData.sizeId,
+        flavorId: formData.flavorId || null,
         team: formData.team,
         customTeam: formData.customTeam || '',
         customText: formData.customText || '',
@@ -35,9 +30,19 @@ export function removeItem(cartItemId) {
 
 export function calculateTotal() {
   return cart.reduce((total, item) => {
+
     const product = products.find(p => p.id === item.productId);
-    const price = product ? product.price : 0;
+
+    if (!product) return total 
+
+    // Encontra a variação de tamanho dentro do produto;
+    const sizeObj = product.sizes.find(s => s.id === item.sizeId);
+
+    // Se encontrar o tamanho, usa o seu preço; caso contrário, 0;
+    const price = sizeObj ? sizeObj.price : 0;
+
     return total + (price * item.quantity);
+    
   }, 0);
 }
 
