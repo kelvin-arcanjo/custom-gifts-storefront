@@ -38,3 +38,29 @@ if (productSelect) {
             renderVariantOptions(selectedProductId)
     })
 }
+
+//Toogle no select das Equipas, caso o cliente queira outra equipa...
+const teamSelect = document.getElementById('team-select')
+const customTeamField = document.getElementById('custom-team-field')
+
+teamSelect.addEventListener('change' , (e) => {
+    if (e.target.value === 'Outra (Especifique)') {
+        customTeamField.style.display = 'block'
+
+    } else {
+        customTeamField.style.display = 'none'
+    }
+})
+
+//FormData no formulário pra ler os dados indseridos nele...
+const form = document.getElementById('order-form')
+
+form
+    .addEventListener('submit' , (event) => {
+        event.preventDefault()
+
+        const dataForm = new FormData(event.target)
+
+        const objectDataForm = Object.fromEntries(dataForm)
+        console.log(objectDataForm)
+})
