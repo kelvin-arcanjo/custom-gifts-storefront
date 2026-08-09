@@ -30,7 +30,7 @@ export function renderProducts() {
                             A partir de <strong>${minPrice.toLocaleString()} Kz</strong>
                             <small>(até ${maxPrice.toLocaleString()} Kz)</small>
                         </p>
-                        <button class="btn-customize">
+                        <button class="btn-customize" data-id="${product.id}">
                             Personalizar
                         </button>
                     </div>
