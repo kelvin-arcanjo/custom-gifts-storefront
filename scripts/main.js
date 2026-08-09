@@ -1,9 +1,17 @@
-import { renderProducts, renderProductOptions, renderTeamOptions } from "./render.js";
+import { 
 
-// 1. Renderiza os produtos na página;
+    renderProducts, 
+    renderProductOptions, 
+    renderTeamOptions,
+    renderVariantOptions
+
+ } from "./render.js";
+
+// 1. Inicialização/Renderiza os produtos na página;
 renderProducts()
 renderProductOptions()
 renderTeamOptions()
+renderVariantOptions('')
 
 // 2. Seleciona o container dos produtos;
 const productsContainer = document.getElementById('products-container')
@@ -20,3 +28,13 @@ productsContainer
             console.log(`Botão Personalizar clicado para o produto: ${productId}`)
         }
 })
+
+const productSelect = document.getElementById('product-select')
+
+if (productSelect) {
+    productSelect
+        .addEventListener('change' , (e) => {
+            const selectedProductId = e.target.value
+            renderVariantOptions(selectedProductId)
+    })
+}

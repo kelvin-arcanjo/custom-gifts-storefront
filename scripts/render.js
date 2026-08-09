@@ -67,3 +67,53 @@ export function renderProductOptions() {
         select.innerHTML  = `<option value="">-- Selecione a Equipa / Clube --</option>` + teamOptions;
     }
 
+
+export function renderVariantOptions(productId) {
+    const sizeSelect = document.getElementById('size-select')
+    const flavorSelect = document.getElementById('flavor-select')
+    const flavorField = document.getElementById('flavor-field')
+
+    //Procura o produto correspondente;
+    const correspondentProduct = products.find(p => p.id === productId)
+
+    // Se nenhum produto for encontrado...
+    if(!correspondentProduct) {
+        if (sizeSelect) sizeSelect.innerHTML = '<option value="">-- Selecione o Tamanho --</option>'
+        if (flavorField) flavorField.style.display = 'none'
+
+        return
+    }
+
+    //Preenche os tamanhos;
+    if (sizeSelect && correspondentProduct.sizes) {
+        const sizeOptions = correspondentProduct.sizes.map(size => {
+            const formattedPrice = size.price.toLocaleString()
+
+            return `
+                <option value="${size.id}">${size.label} - ${formattedPrice} Kz</option>
+                `
+        }).join('')
+
+        sizeSelect.innerHTML = '<option value="">-- Selecione o tamanho --</option>' + sizeOptions
+    }
+
+    //Preenche e exibe/esconde os sabores;
+    if (correspondentProduct.flavors && correspondentProduct.flavors.length > 0) {
+        if (flavorSelect) {
+            const flavorOptions = correspondentProduct.flavors
+                .map(flavor => {
+                    return `<option value="${flavor.id}">${flavor.label}</option>`
+                }).join('')
+
+                flavorSelect.innerHTML = '<option value="">-- Selecione o sabor --</option>' + flavorOptions
+        }
+
+        // Torna o campo de sabor visível;
+        if (flavorField) flavorField.style.display = 'block'
+
+    } else {
+        if (flavorField) flavorField.style.display = 'none'
+        if (flavorSelect) flavorSelect.innerHTML = ''
+    }
+}
+

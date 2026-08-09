@@ -49,6 +49,20 @@
                     </select>
                 </div>
 
+                <div>
+                    <label for="size-select">Tamanho:</label>
+                    <select name="sizeId" id="size-select">
+                        <!-- Preenchido dinamicamente pelo render.js -->
+                    </select>
+                </div>
+
+                <div id="flavor-field"  style: "display: none">
+                    <label for="flavor-select">Sabor:</label>
+                    <select name="flavorId" id="flavor-select">
+                        <!-- Preenchido dinamicamente, só visível se o produto tiver sabores -->
+                    </select>
+                </div>
+
                 <!-- Campo condicional se escolher "Outra" -->
                  <div>
                     <label for="custom-team">Nome da Equipa:</label>
