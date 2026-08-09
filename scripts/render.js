@@ -1,4 +1,5 @@
 import { products , teams } from "./data.js";
+import { cart , calculateTotal } from "./cart.js";
 
 export function renderProducts() {
     const container = document.getElementById('products-container')
@@ -115,5 +116,64 @@ export function renderVariantOptions(productId) {
         if (flavorField) flavorField.style.display = 'none'
         if (flavorSelect) flavorSelect.innerHTML = ''
     }
+}
+
+//Função renderCartSummary()...
+
+export function renderCartSummary() {
+  const summaryContainer = document.getElementById('cart-summary');
+  const totalContainer = document.getElementById('cart-total');
+
+  if (!summaryContainer) return;
+
+  // Se o carrinho estiver vazio
+  if (cart.length === 0) {
+    summaryContainer.innerHTML = '<p>O teu carrinho está vazio.</p>';
+    if (totalContainer) totalContainer.textContent = '0 Kz';
+    return;
+  }
+
+  // Gera a lista de itens do carrinho
+  const itemsHTML = cart.map(item => {
+    // Busca o produto e o tamanho correspondentes
+    const product = products.find(p => p.id === item.productId);
+    const sizeObj = product?.sizes?.find(s => s.id === item.sizeId);
+
+    // 1. CORREÇÃO: Guard clause - Salta se faltarem dados essenciais
+    if (!product || !sizeObj) {
+      return ''; 
+    }
+
+    // A partir daqui, product e sizeObj EXISTEM
+    const teamDisplay = (item.team === 'Outra (Especifique)' && item.customTeam)
+      ? item.customTeam 
+      : item.team;
+
+    const flavorObj = product.flavors?.find(f => f.id === item.flavorId);
+    const flavorText = flavorObj ? ` | Sabor: ${flavorObj.label}` : '';
+
+    // 2. CORREÇÃO: Typo corrigido (itemSubtotal com 't' minúsculo)
+    const itemSubtotal = (sizeObj.price * item.quantity).toLocaleString();
+
+    return `
+      <div class="cart-item">
+        <h4>${product.name} (${sizeObj.label})</h4>
+        <p>
+          Equipa: ${teamDisplay}${flavorText}
+          ${item.customText ? ` | Texto: "${item.customText}"` : ''}
+        </p>
+        <p>Qtd: ${item.quantity} x ${sizeObj.price.toLocaleString()} Kz = <strong>${itemSubtotal} Kz</strong></p>
+      </div>
+    `;
+  }).join('');
+
+  // Atualiza o DOM
+  summaryContainer.innerHTML = itemsHTML;
+
+  // Atualiza o total
+  if (totalContainer) {
+    const total = calculateTotal();
+    totalContainer.textContent = `${total.toLocaleString()} Kz`;
+  }
 }
 
