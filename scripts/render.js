@@ -1,4 +1,4 @@
-import { products } from "./data.js";
+import { products , teams } from "./data.js";
 
 export function renderProducts() {
     const container = document.getElementById('products-container')
@@ -38,3 +38,32 @@ export function renderProducts() {
             `    
         }).join('')
 }
+
+//Renderiza as opções do <select id="product-select">;
+
+export function renderProductOptions() {
+    const select = document.getElementById('product-select')
+
+    if(!select) return;
+
+    const productOptions = products
+        .map(product => {
+            return `<option value="${product.id}">${product.name}</option>`
+    }).join('')
+
+    select.innerHTML = `<option value="">-- Selecione um produto --</option>` + productOptions
+}
+    //Renderiza as opções do <select id="team-select"></select>;
+
+    export function renderTeamOptions() {
+        const select = document.getElementById('team-select')
+
+        if (!select) return
+
+        const teamOptions = teams
+            .map(team => `<option value="${team}">${team}</option>`)
+            .join('')
+
+        select.innerHTML  = `<option value="">-- Selecione a Equipa / Clube --</option>` + teamOptions;
+    }
+

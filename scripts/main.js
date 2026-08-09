@@ -1,7 +1,9 @@
-import { renderProducts } from "./render.js";
+import { renderProducts, renderProductOptions, renderTeamOptions } from "./render.js";
 
 // 1. Renderiza os produtos na página;
 renderProducts()
+renderProductOptions()
+renderTeamOptions()
 
 // 2. Seleciona o container dos produtos;
 const productsContainer = document.getElementById('products-container')

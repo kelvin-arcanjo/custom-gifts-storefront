@@ -41,7 +41,7 @@ export const products = [
 
     {
         id: 'redbull', 
-        name: 'Caneca Térmica Red Bull', 
+        name: 'Caneca/Copo - Red Bull', 
         occasions: ['Casamento', 'Aniversário', 'Pessoal'],
         sizes: [
             { id: 'grande', label: 'Grande', price: 5000 },
