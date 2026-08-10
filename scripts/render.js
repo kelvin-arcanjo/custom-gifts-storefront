@@ -163,6 +163,7 @@ export function renderCartSummary() {
           ${item.customText ? ` | Texto: "${item.customText}"` : ''}
         </p>
         <p>Qtd: ${item.quantity} x ${sizeObj.price.toLocaleString()} Kz = <strong>${itemSubtotal} Kz</strong></p>
+        <button class="btn-remove-item" data-cart-item-id="${item.cartItemId}">Remover</button>
       </div>
     `;
   }).join('');

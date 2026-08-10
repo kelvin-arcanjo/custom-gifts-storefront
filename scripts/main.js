@@ -1,4 +1,4 @@
-import { addItem } from "./cart.js";
+import { addItem , removeItem } from "./cart.js";
 import { 
     renderProducts, 
     renderProductOptions, 
@@ -14,10 +14,10 @@ renderTeamOptions()
 renderVariantOptions('')
 renderCartSummary()
 
-// 2. Seleciona o container dos produtos;
+//Seleciona o container dos produtos;
 const productsContainer = document.getElementById('products-container')
 
-//3. Event Delegation: Escuta cliques no container pai;
+//Event Delegation: Escuta cliques no container pai;
 productsContainer
     .addEventListener('click' , (e) => {
         // Verifica se o elemento clicado (ou o mais próximo) tem a classe do botão;
@@ -29,6 +29,21 @@ productsContainer
             console.log(`Botão Personalizar clicado para o produto: ${productId}`)
         }
 })
+
+// 2. NOVO: Event Delegation no #cart-summary para remover itens;
+const cartSummaryContainer = document.getElementById('cart-summary');
+
+if (cartSummaryContainer) {
+    cartSummaryContainer.addEventListener('click', (e) => {
+        const button = e.target.closest('.btn-remove-item');
+
+        if (button) {
+            const cartItemId = button.dataset.cartItemId;
+            removeItem(cartItemId);
+            renderCartSummary(); // Re-renderiza o resumo com o item removido e total atualizado
+        }
+    });
+}
 
 const productSelect = document.getElementById('product-select')
 
