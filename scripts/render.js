@@ -1,10 +1,17 @@
 import { products , teams } from "./data.js";
 import { cart , calculateTotal } from "./cart.js";
 
-export function renderProducts() {
+export function renderProducts(productsList = products) {
     const container = document.getElementById('products-container')
 
-    container.innerHTML = products
+    if (!container) return
+
+    if (productsList.length === 0) {
+        container.innerHTML = '<p class="no-products">Nenhum Produto encontrado para esta ocasião'
+        return
+    }
+
+    container.innerHTML = productsList
         .map(product => {
             // 1. Extrai apenas os preços das variantes;
             const prices = product.sizes.map(size => size.price)

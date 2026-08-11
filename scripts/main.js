@@ -1,4 +1,5 @@
 import { addItem , removeItem , cart } from "./cart.js";
+import { products } from './data.js';
 import { buildOrderMessage, getWhatsappLink } from "./whatsapp.js";
 import { 
     renderProducts, 
@@ -113,6 +114,26 @@ function selectProductAndScroll(productId) {
         //Scroll Behavior;
         customSection.scrollIntoView({ behavior: 'smooth' , block: 'center'})
     }
+}
+
+const categoryFilters = document.getElementById('category-filters')
+
+if (categoryFilters) {
+    categoryFilters.addEventListener('click' , (e) => {
+        const buttonFilters = e.target.closest('[data-category]')
+        if(!buttonFilters) return
+
+        const category = buttonFilters.dataset.category
+
+        if (category === 'Todos') {
+            renderProducts(products)
+
+        } else {
+            const filtered = products
+                .filter(product => product.occasions && product.occasions.includes(category))
+                renderProducts(filtered)
+        }
+    })
 }
 
 
