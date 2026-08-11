@@ -1,4 +1,4 @@
-import { products } from "./data.js";
+import { products , sizes } from "./data.js";
 
 //Estado  em memória do carrinho;
 export const cart = [];
@@ -36,7 +36,7 @@ export function calculateTotal() {
     if (!product) return total 
 
     // Encontra a variação de tamanho dentro do produto;
-    const sizeObj = product.sizes.find(s => s.id === item.sizeId);
+    const sizeObj = sizes.find(s => s.id === item.sizeId);
 
     // Se encontrar o tamanho, usa o seu preço; caso contrário, 0;
     const price = sizeObj ? sizeObj.price : 0;

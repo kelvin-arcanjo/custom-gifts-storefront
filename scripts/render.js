@@ -1,4 +1,4 @@
-import { products , teams } from "./data.js";
+import { products , teams , sizes } from "./data.js";
 import { cart , calculateTotal } from "./cart.js";
 
 export function renderProducts(productsList = products) {
@@ -11,16 +11,15 @@ export function renderProducts(productsList = products) {
         return
     }
 
+    const prices = sizes.map(size => size.price)
+
+    //Calcula o menor e o maior preço;
+    const minPrice = Math.min(...prices)
+    const maxPrice = Math.max(...prices)
+
     container.innerHTML = productsList
         .map(product => {
-            // 1. Extrai apenas os preços das variantes;
-            const prices = product.sizes.map(size => size.price)
-
-            // 2. Calcula o menor e o maior preço;
-            const minPrice = Math.min(...prices)
-            const maxPrice = Math.max(...prices)
-
-            // 3. Formata as ocasiões para exibir como tags/badges;
+            //Formata as ocasiões para exibir como tags/badges;
             const occasionsBadges = product.occasions
                 .map(occ => `<span class="badge">${occ}</span>`)
                 .join(' ')
@@ -77,52 +76,29 @@ export function renderProductOptions() {
 
 
 export function renderVariantOptions(productId) {
-    const sizeSelect = document.getElementById('size-select')
-    const flavorSelect = document.getElementById('flavor-select')
-    const flavorField = document.getElementById('flavor-field')
+  const flavorSelect = document.getElementById('flavor-select');
+  const flavorContainer = document.getElementById('flavor-field'); // div/container do select de sabores
 
-    //Procura o produto correspondente;
-    const correspondentProduct = products.find(p => p.id === productId)
+  if (!flavorSelect) return;
 
-    // Se nenhum produto for encontrado...
-    if(!correspondentProduct) {
-        if (sizeSelect) sizeSelect.innerHTML = '<option value="">-- Selecione o Tamanho --</option>'
-        if (flavorField) flavorField.style.display = 'none'
+  const product = products.find(p => p.id === productId);
 
-        return
-    }
+  // Se o produto existir e tiver sabores (ex: Booster)
+  if (product && product.flavors) {
+    const flavorOptions = product.flavors.map(f => {
 
-    //Preenche os tamanhos;
-    if (sizeSelect && correspondentProduct.sizes) {
-        const sizeOptions = correspondentProduct.sizes.map(size => {
-            const formattedPrice = size.price.toLocaleString()
+        return `<option value="${f.id}">${f.label}</option>`;
 
-            return `
-                <option value="${size.id}">${size.label} - ${formattedPrice} Kz</option>
-                `
-        }).join('')
+    }).join('');
 
-        sizeSelect.innerHTML = '<option value="">-- Selecione o tamanho --</option>' + sizeOptions
-    }
+    flavorSelect.innerHTML = `<option value="">Selecione o Sabor</option>${flavorOptions}`;
+    if (flavorContainer) flavorContainer.style.display = 'block';
 
-    //Preenche e exibe/esconde os sabores;
-    if (correspondentProduct.flavors && correspondentProduct.flavors.length > 0) {
-        if (flavorSelect) {
-            const flavorOptions = correspondentProduct.flavors
-                .map(flavor => {
-                    return `<option value="${flavor.id}">${flavor.label}</option>`
-                }).join('')
-
-                flavorSelect.innerHTML = '<option value="">-- Selecione o sabor --</option>' + flavorOptions
-        }
-
-        // Torna o campo de sabor visível;
-        if (flavorField) flavorField.style.display = 'block'
-
-    } else {
-        if (flavorField) flavorField.style.display = 'none'
-        if (flavorSelect) flavorSelect.innerHTML = ''
-    }
+  } else {
+    // Esconde/reseta o campo de sabores para produtos sem sabor (ex: Lata Personalizada)
+    flavorSelect.innerHTML = '<option value="">Não aplicável</option>';
+    if (flavorContainer) flavorContainer.style.display = 'none';
+  }
 }
 
 //Função renderCartSummary()...
@@ -144,7 +120,7 @@ export function renderCartSummary() {
   const itemsHTML = cart.map(item => {
     // Busca o produto e o tamanho correspondentes
     const product = products.find(p => p.id === item.productId);
-    const sizeObj = product?.sizes?.find(s => s.id === item.sizeId);
+    const sizeObj = sizes.find(s => s.id === item.sizeId);
 
     // 1. CORREÇÃO: Guard clause - Salta se faltarem dados essenciais
     if (!product || !sizeObj) {
@@ -183,5 +159,16 @@ export function renderCartSummary() {
     const total = calculateTotal();
     totalContainer.textContent = `${total.toLocaleString()} Kz`;
   }
+}
+
+export function renderSizeOptions() {
+    const sizeSelect = document.getElementById('size-select')
+    if(!sizeSelect) return 
+
+    const optionsHTML = sizes.map(size => {
+        return `<option value="${size.id}">${size.label} - ${size.price.toLocaleString()} Kz</option>`
+    }).join('')
+
+    sizeSelect.innerHTML = `<option value="">Selecione o Tamanho</option>${optionsHTML}`;
 }
 
