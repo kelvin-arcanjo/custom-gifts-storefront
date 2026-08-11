@@ -27,7 +27,7 @@ productsContainer
         if (button) {
             //Obtém o id guardado no atributo data-id;
             const productId = button.dataset.id
-            console.log(`Botão Personalizar clicado para o produto: ${productId}`)
+            selectProductAndScroll(productId)
         }
 })
 
@@ -96,3 +96,23 @@ whatsappBtn.addEventListener('click' , () => {
         window.open(link, '_blank')
     }
 })
+
+// Função auxiliar para selecionar o produto no formulário e fazer scroll suave;
+function selectProductAndScroll(productId) {
+    const productSelectForScroll = document.getElementById('product-select')
+    const customSection = document.getElementById('customization-section')
+
+    if (productSelectForScroll) {
+        productSelectForScroll.value = productId
+
+        // Isso é essencial para acionar o listener existente que chama renderVariantOptions();
+       productSelectForScroll.dispatchEvent(new Event('change'))
+    }
+
+    if (customSection) {
+        //Scroll Behavior;
+        customSection.scrollIntoView({ behavior: 'smooth' , block: 'center'})
+    }
+}
+
+
