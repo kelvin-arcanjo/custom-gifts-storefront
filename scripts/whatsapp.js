@@ -46,3 +46,12 @@ export function buildOrderMessage() {
 
     return message;
 }
+
+const WHATSAPP_NUMBER = '244943567154'
+
+export function getWhatsappLink() {
+    const message =  buildOrderMessage()
+    const encodedMessage = encodeURIComponent(message)
+
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`
+}

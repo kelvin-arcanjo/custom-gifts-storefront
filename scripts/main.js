@@ -1,10 +1,11 @@
-import { addItem , removeItem } from "./cart.js";
+import { addItem , removeItem , cart } from "./cart.js";
+import { buildOrderMessage, getWhatsappLink } from "./whatsapp.js";
 import { 
     renderProducts, 
     renderProductOptions, 
     renderTeamOptions,
     renderVariantOptions,
-    renderCartSummary
+    renderCartSummary,
  } from "./render.js";
 
 // 1. Inicialização/Renderiza os produtos na página;
@@ -81,4 +82,17 @@ form
         addItem(objectDataForm)
         renderCartSummary()
         form.reset() 
+})
+
+//Envio ao whatsapp;
+const whatsappBtn = document.getElementById('whatsapp-btn')
+
+whatsappBtn.addEventListener('click' , () => {
+    if (cart.length === 0) {
+        alert('Adicione pelo menos um item ao carrinho antes de enviar o pedido')
+
+    } else {
+        const link = getWhatsappLink()
+        window.open(link, '_blank')
+    }
 })
