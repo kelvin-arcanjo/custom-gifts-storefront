@@ -48,28 +48,48 @@ if (cartSummaryContainer) {
     });
 }
 
+const teamSelect = document.getElementById('team-select')
+const customTeamWrapper = document.getElementById('custom-team-field')
+const customTeamInput = document.getElementById('custom-team')
 const productSelect = document.getElementById('product-select')
+const flavorWrapper = document.getElementById('flavor-field')
 
 if (productSelect) {
     productSelect
         .addEventListener('change' , (e) => {
             const selectedProductId = e.target.value
             renderVariantOptions(selectedProductId)
+
+            if (selectedProductId !== '') {
+                teamSelect.value = ''
+                teamSelect.disabled = true
+
+                if (customTeamWrapper) customTeamWrapper.style.display = 'none'
+                if (customTeamInput) customTeamInput.value = ''
+
+            } else {
+                teamSelect.disabled = false
+            }
     })
 }
 
-//Toogle no select das Equipas, caso o cliente queira outra equipa...
-const teamSelect = document.getElementById('team-select')
-const customTeamField = document.getElementById('custom-team-field')
+if (teamSelect) {
+    teamSelect.addEventListener('change' , (e) => {
+        const selectedTeam = e.target.value
 
-teamSelect.addEventListener('change' , (e) => {
-    if (e.target.value === 'Outra (Especifique)') {
-        customTeamField.style.display = 'block'
+        if (selectedTeam !== '') {
+            productSelect.value = ''
+            productSelect.disabled = true
 
-    } else {
-        customTeamField.style.display = 'none'
-    }
-})
+            if (flavorWrapper) flavorWrapper.style.display = 'none'
+            renderVariantOptions('')
+
+        } else {
+            productSelect.disabled = false
+        }
+    })
+}
+    
 
 //FormData no formulário pra ler os dados indseridos nele...
 const form = document.getElementById('order-form')
