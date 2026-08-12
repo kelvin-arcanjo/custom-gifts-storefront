@@ -30,13 +30,10 @@ export function removeItem(cartItemId) {
 
 export function calculateTotal() {
   return cart.reduce((total, item) => {
-
-    const product = products.find(p => p.id === item.productId);
-
-    if (!product) return total 
-
-    // Encontra a variação de tamanho dentro do produto;
     const sizeObj = sizes.find(s => s.id === item.sizeId);
+
+    // Guard clause: se por algum motivo não houver tamanho selecionado, pula o item
+    if (!sizeObj) return total 
 
     // Se encontrar o tamanho, usa o seu preço; caso contrário, 0;
     const price = sizeObj ? sizeObj.price : 0;
@@ -45,6 +42,5 @@ export function calculateTotal() {
     
   }, 0);
 }
-
 
 

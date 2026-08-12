@@ -102,57 +102,47 @@ export function renderVariantOptions(productId) {
 }
 
 //Função renderCartSummary()...
-
 export function renderCartSummary() {
   const summaryContainer = document.getElementById('cart-summary');
-  const totalContainer = document.getElementById('cart-total');
-
+  const totalContainer = document.getElementById('cart-total')
   if (!summaryContainer) return;
 
-  // Se o carrinho estiver vazio
   if (cart.length === 0) {
-    summaryContainer.innerHTML = '<p>O teu carrinho está vazio.</p>';
-    if (totalContainer) totalContainer.textContent = '0 Kz';
+    summaryContainer.innerHTML = '<p>O seu carrinho está vazio.</p>';
+    if (totalContainer) totalContainer.textContent = '0 Kz'
     return;
   }
 
-  // Gera a lista de itens do carrinho
-  const itemsHTML = cart.map(item => {
-    // Busca o produto e o tamanho correspondentes
+  const html = cart.map((item) => {
     const product = products.find(p => p.id === item.productId);
     const sizeObj = sizes.find(s => s.id === item.sizeId);
 
-    // 1. CORREÇÃO: Guard clause - Salta se faltarem dados essenciais
-    if (!product || !sizeObj) {
-      return ''; 
-    }
+    // Guard clause: exige apenas o tamanho para conseguir renderizar o preço
+    if (!sizeObj) return '';
 
-    // A partir daqui, product e sizeObj EXISTEM
-    const teamDisplay = (item.team === 'Outra (Especifique)' && item.customTeam)
-      ? item.customTeam 
-      : item.team;
+    // Nome dinâmico: se houver produto/marca usa-o, senão usa o nome genérico
+    const productDisplay = product ? product.name : 'Caneca/Copo Personalizado';
 
-    const flavorObj = product.flavors?.find(f => f.id === item.flavorId);
-    const flavorText = flavorObj ? ` | Sabor: ${flavorObj.label}` : '';
+    // Optional chaining no flavors (seguro caso product seja undefined)
+    const flavorObj = product?.flavors?.find(f => f.id === item.flavorId);
+    const flavorText = flavorObj ? ` - Sabor: ${flavorObj.label}` : '';
 
-    // 2. CORREÇÃO: Typo corrigido (itemSubtotal com 't' minúsculo)
-    const itemSubtotal = (sizeObj.price * item.quantity).toLocaleString();
+    const teamText = item.team ? ` - Equipa: ${item.team}` : '';
+    const customTeamText = item.customTeam ? ` (${item.customTeam})` : '';
 
     return `
       <div class="cart-item">
-        <h4>${product.name} (${sizeObj.label})</h4>
-        <p>
-          Equipa: ${teamDisplay}${flavorText}
-          ${item.customText ? ` | Texto: "${item.customText}"` : ''}
-        </p>
-        <p>Qtd: ${item.quantity} x ${sizeObj.price.toLocaleString()} Kz = <strong>${itemSubtotal} Kz</strong></p>
+        <h4>${productDisplay}</h4>
+        <p>Tamanho: ${sizeObj.label}${flavorText}${teamText}${customTeamText}</p>
+        <p>Texto: ${item.customText || 'Nenhum'}</p>
+        <p>Qtd: ${item.quantity} x ${sizeObj.price.toLocaleString()} Kz</p>
         <button class="btn-remove-item" data-cart-item-id="${item.cartItemId}">Remover</button>
       </div>
     `;
   }).join('');
 
   // Atualiza o DOM
-  summaryContainer.innerHTML = itemsHTML;
+  summaryContainer.innerHTML = html;
 
   // Atualiza o total
   if (totalContainer) {

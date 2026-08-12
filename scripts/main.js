@@ -103,7 +103,9 @@ form
 
         addItem(objectDataForm)
         renderCartSummary()
-        form.reset() 
+
+        form.reset()
+        resetFormState(); 
 })
 
 //Envio ao whatsapp;
@@ -155,6 +157,16 @@ if (categoryFilters) {
                 renderProducts(filtered)
         }
     })
+}
+
+function resetFormState() {
+    if(teamSelect) teamSelect.disabled = false
+    if (productSelect) productSelect.disabled = false
+
+    if (customTeamWrapper) customTeamWrapper.style.display = 'none';
+    if (flavorWrapper) flavorWrapper.style.display = 'none';
+
+    renderVariantOptions('');
 }
 
 
