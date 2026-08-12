@@ -36,13 +36,11 @@
                 <!--Seleção do Produto-->
 
                 <div>
-                    <label for="product-select">Produto:</label>
+                    <label for="product-select">Marca:</label>
                     <select name="productId" id="product-select" required>
                         <!--Opções serão careegadas dinamicamente via JS-->
                     </select>
                 </div>
-
-                
 
                 <!--Escolha de Equipa-->
                 <div>
@@ -52,12 +50,20 @@
                     </select>
                 </div>
 
+                
                 <!-- Campo condicional se escolher "Outra" -->
-                 <div id="custom-team-field" style="display: none">
+                <div id="custom-team-field" style="display: none">
                     <label for="custom-team">Nome da Equipa:</label>
                     <input type="text" id="custom-team" name="customTeam" placeholder="Ex.:Juventus">
-                 </div>
-
+                </div>
+                
+                <div>
+                    <label for="type-select">Tipo:</label>
+                    <select name="type" id="type-select" required>
+                    <!-- Preenchido dinamicamente pelo render.js -->
+                    </select>
+                </div>
+                
                 <div>
                     <label for="size-select">Tamanho:</label>
                     <select name="sizeId" id="size-select">

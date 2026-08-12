@@ -7,7 +7,8 @@ import {
     renderTeamOptions,
     renderVariantOptions,
     renderCartSummary,
-    renderSizeOptions
+    renderSizeOptions,
+    renderTypeOptions
  } from "./render.js";
 
 // 1. Inicialização/Renderiza os produtos na página;
@@ -16,6 +17,7 @@ renderProductOptions()
 renderTeamOptions()
 renderSizeOptions()
 renderCartSummary()
+renderTypeOptions()
 
 //Seleciona o container dos produtos;
 const productsContainer = document.getElementById('products-container')

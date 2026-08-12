@@ -1,14 +1,14 @@
 export const products = [
     {
         id: 'nocal' , 
-        name: 'Caneca/Copo Personalizado - Nocal', 
+        name: 'Nocal', 
         occasions: ['Casamento', 'Aniversário', 'Pessoal'],
         image: 'images/cerveja.jpeg' 
     },
 
     {
         id: 'booster',
-        name: 'Caneca/Copo Personalizado - Booster',
+        name: 'Booster',
         occasions: ['Casamento', 'Aniversário', 'Pessoal'],
         flavors: [
             { id: 'normal', label: 'Normal' },
@@ -19,14 +19,14 @@ export const products = [
 
     {
         id: 'cuca',
-        name: 'Caneca/Copo Personalizada - Cuca',
+        name: 'Cuca',
         occasions: ['Casamento', 'Aniversário', 'Pessoal'],
         image: 'images/cuca.jpeg'
     },
 
     {
         id: 'redbull', 
-        name: 'Caneca/Copo - Red Bull', 
+        name: 'Red Bull', 
         occasions: ['Casamento', 'Aniversário', 'Pessoal'],
         image: 'images/cerveja.jpeg' 
     },
@@ -35,7 +35,7 @@ export const products = [
 
 export const occasions = ['Todos', 'Casamento', 'Aniversário', 'Pessoal'];
 
-export const types = ['Todos', 'Caneca', 'Copo'];
+export const types = ['Caneca' , 'Copo' , 'Ambos' ];
 
 export const sizes = [
 

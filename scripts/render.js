@@ -1,4 +1,4 @@
-import { products , teams , sizes } from "./data.js";
+import { products , teams , sizes, types } from "./data.js";
 import { cart , calculateTotal } from "./cart.js";
 
 export function renderProducts(productsList = products) {
@@ -160,5 +160,18 @@ export function renderSizeOptions() {
     }).join('')
 
     sizeSelect.innerHTML = `<option value="">Selecione o Tamanho</option>${optionsHTML}`;
+}
+
+//Função RenderTypeOptions...
+
+export function renderTypeOptions() {
+    const select = document.getElementById('type-select')
+    if (!select) return
+
+    const typeOptions = types
+        .map(type => `<option value="${type}">${type}</option>`)
+        .join('')
+
+    select.innerHTML = `<option value="">-- Selecione o Tipo --</option>` + typeOptions
 }
 
