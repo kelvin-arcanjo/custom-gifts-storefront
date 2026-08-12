@@ -35,7 +35,7 @@ productsContainer
         }
 })
 
-// 2. NOVO: Event Delegation no #cart-summary para remover itens;
+//NOVO: Event Delegation no #cart-summary para remover itens;
 const cartSummaryContainer = document.getElementById('cart-summary');
 
 if (cartSummaryContainer) {
@@ -103,9 +103,43 @@ form
         const dataForm = new FormData(event.target)
         const objectDataForm = Object.fromEntries(dataForm)
 
-        addItem(objectDataForm)
-        renderCartSummary()
+        console.log("Dados do formulário:", objectDataForm);
 
+        const selectedType = objectDataForm.type;
+
+        if (objectDataForm.type === 'Ambos') {
+            const qtyCanecas = Number(objectDataForm.quantityCanecas) || 0
+            const qtyCopos = Number(objectDataForm.quantityCopos) || 0
+
+            if (qtyCanecas > 0) {
+                addItem({
+                    ...objectDataForm,
+                    type: 'Caneca',
+                    quantity: qtyCanecas
+                })
+            }
+
+            if (qtyCopos > 0) {
+                addItem({
+                    ...objectDataForm,
+                    type: 'Copo',
+                    quantity: qtyCopos
+                })
+            }
+
+        } else {
+            if (!objectDataForm.type) {
+                alert('Por favor, selecione o Tipo (Caneca ou Copo)!')
+                return;
+            }
+
+            addItem({
+                ...objectDataForm,
+                quantity: Number(objectDataForm.quantity) || 1
+            });
+        }
+
+        renderCartSummary()
         form.reset()
         resetFormState(); 
 })
@@ -168,7 +202,27 @@ function resetFormState() {
     if (customTeamWrapper) customTeamWrapper.style.display = 'none';
     if (flavorWrapper) flavorWrapper.style.display = 'none';
 
+    if (quantityNormalField) quantityNormalField.style.display = 'block';
+    if (quantityBothField) quantityBothField.style.display = 'none';
+
     renderVariantOptions('');
+    renderTypeOptions()
 }
+
+//Campo das Quantidades ...se for ambos...
+const typeSelect = document.getElementById('type-select')
+const quantityNormalField = document.getElementById('quantity-normal-field')
+const quantityBothField = document.getElementById('quantity-both-field')
+
+typeSelect.addEventListener('change' , (e) => {
+    if (e.target.value === 'Ambos') {
+        quantityNormalField.style.display = 'none'
+        quantityBothField.style.display = 'block'
+
+    } else {
+        quantityNormalField.style.display = 'block'
+        quantityBothField.style.display = 'none'
+    }
+})
 
 

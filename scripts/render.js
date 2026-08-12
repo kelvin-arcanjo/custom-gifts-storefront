@@ -121,12 +121,14 @@ export function renderCartSummary() {
     if (!sizeObj) return '';
 
     // Nome dinâmico: se houver produto/marca usa-o, senão usa o nome genérico
-    const productDisplay = product ? product.name : 'Caneca/Copo Personalizado';
+    const itemType = item.type || 'Item';
+    const productDisplay = product
+    ? `${product.name} (${itemType})` 
+    : `${itemType} Personalizado(a)`;
 
     // Optional chaining no flavors (seguro caso product seja undefined)
     const flavorObj = product?.flavors?.find(f => f.id === item.flavorId);
     const flavorText = flavorObj ? ` - Sabor: ${flavorObj.label}` : '';
-
     const teamText = item.team ? ` - Equipa: ${item.team}` : '';
     const customTeamText = item.customTeam ? ` (${item.customTeam})` : '';
 
@@ -169,8 +171,13 @@ export function renderTypeOptions() {
     if (!select) return
 
     const typeOptions = types
-        .map(type => `<option value="${type}">${type}</option>`)
-        .join('')
+    .map(type => {
+      // Caso 'type' no data.js seja objeto { id, label } ou string direta
+      const value = typeof type === 'object' ? type.id : type;
+      const label = typeof type === 'object' ? type.label : type;
+      return `<option value="${value}">${label}</option>`;
+    })
+    .join('');
 
     select.innerHTML = `<option value="">-- Selecione o Tipo --</option>` + typeOptions
 }

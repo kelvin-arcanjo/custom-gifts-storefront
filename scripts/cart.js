@@ -12,6 +12,7 @@ export function addItem (formData) {
         team: formData.team,
         customTeam: formData.customTeam || '',
         customText: formData.customText || '',
+        type: formData.type,
         quantity: Math.max(1 , Number(formData.quantity) || 1)
     }
 

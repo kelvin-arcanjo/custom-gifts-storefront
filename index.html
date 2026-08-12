@@ -63,7 +63,15 @@
                     <!-- Preenchido dinamicamente pelo render.js -->
                     </select>
                 </div>
-                
+
+                 <div id="quantity-both-field" style="display: none">
+                    <label for="quantity-canecas">Qtd. Canecas:</label>
+                    <input type="number" id="quantityCanecas" name="quantityCanecas" min="0" value="0">
+
+                    <label for="quantity-copos">Qtd. Copos:</label>
+                    <input type="number" id="quantityCopos" name="quantityCopos" min="0" value="0">
+                </div>
+
                 <div>
                     <label for="size-select">Tamanho:</label>
                     <select name="sizeId" id="size-select">
@@ -86,10 +94,10 @@
                     <input type="text" id="custom-text" name="customText" placeholder="Ex: Osvaldo Suend">
                 </div>
 
-                <!-- 4. Quantidade -->
-                <div>
+                <!--Quantidade -->
+                <div id="quantity-normal-field">
                     <label for="quantity">Quantidade:</label>
-                    <input type="number" id="quantity" name="quantity" value="1" min="1" required>
+                    <input type="number" id="quantity" name="quantity" value="1" min="1">
                 </div>
 
                 <!-- Botão de submissão -->
