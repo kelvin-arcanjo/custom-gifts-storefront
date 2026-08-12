@@ -1,5 +1,5 @@
 import { cart ,  calculateTotal } from './cart.js';
-import { products } from './data.js';
+import { products , sizes } from './data.js';
 
 /**
  * Constrói a mensagem de texto do pedido para envio via WhatsApp.
@@ -7,44 +7,38 @@ import { products } from './data.js';
  */
 
 export function buildOrderMessage() {
-    if (cart.length === 0) {
-        return 'Olá! O meu carrinho está vazio.'
-    }
+  if (cart.length === 0) return '';
 
-    let message = '🛒 *Novo Pedido*\n\n';
+  const itemsList = cart.map((item, index) => {
+    const product = products.find(p => p.id === item.productId);
+    const sizeObj = sizes.find(s => s.id === item.sizeId);
 
-    cart.forEach((item , index) => {
-        const product = products.find(p => p.id === item.productId)
-        const sizeObj = product?.sizes?.find(s => s.id === item.sizeId)
+    // Guard clause: se não houver tamanho correspondente, pula o item
+    if (!sizeObj) return '';
 
-    // Guard clause: salta se o produto ou tamanho não existirem;
-    if (!product || !sizeObj) return;
+    // Nome dinâmico incluindo o tipo (Caneca / Copo)
+    const itemType = item.type || 'Item';
+    const productDisplay = product 
+      ? `${product.name} (${itemType})` 
+      : `${itemType} Personalizado(a)`;
 
+    // Detalhes opcionais
+    const flavorObj = product?.flavors?.find(f => f.id === item.flavorId);
+    const flavorText = flavorObj ? `\n   • Sabor: ${flavorObj.label}` : '';
+    const teamText = item.team ? `\n   • Equipa: ${item.team}` : '';
+    const customTeamText = item.customTeam ? ` (${item.customTeam})` : '';
+    const customText = item.customText ? `\n   • Texto: ${item.customText}` : '';
 
-    // Trata a equipa personalizada ou selecionada
-    const teamDisplay = (item.team === 'Outra (Especifique)' && item.customTeam)
-      ? item.customTeam 
-      : item.team;
+    const itemTotal = sizeObj.price * item.quantity;
 
-    // Trata o sabor (se aplicável)
-    const flavorObj = product.flavors?.find(f => f.id === item.flavorId);
-    const flavorText = flavorObj ? `\n- Sabor: ${flavorObj.label}` : '';
+    return `${index + 1}. *${productDisplay}*
+   • Tamanho: ${sizeObj.label}${flavorText}${teamText}${customTeamText}${customText}
+   • Qtd: ${item.quantity} x ${sizeObj.price.toLocaleString()} Kz = *${itemTotal.toLocaleString()} Kz*`;
+  }).filter(Boolean).join('\n\n');
 
-    // Trata o texto personalizado (se aplicável)
-    const customTextDisplay = item.customText ? `\n- Texto: "${item.customText}"` : '';
+  const total = calculateTotal();
 
-    const itemSubtotal = (sizeObj.price * item.quantity).toLocaleString();
-
-    message += `*Item ${index + 1}: ${product.name}*\n`;
-    message += `- Tamanho: ${sizeObj.label}\n`;
-    message += `- Equipa: ${teamDisplay}${flavorText}${customTextDisplay}\n`;
-    message += `- Qtd: ${item.quantity} x ${sizeObj.price.toLocaleString()} Kz = *${itemSubtotal} Kz*\n\n`;     
-})
-
-    const total = calculateTotal().toLocaleString();
-    message += `💰 *Total do Pedido: ${total} Kz*`;
-
-    return message;
+  return `*Novo Pedido - Osvaldo Brindes* 🛒\n\n${itemsList}\n\n*Total do Pedido:* ${total.toLocaleString()} Kz`;
 }
 
 const WHATSAPP_NUMBER = '244943567154'
