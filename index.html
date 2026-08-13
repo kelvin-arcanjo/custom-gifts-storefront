@@ -33,6 +33,16 @@
             <h2>Personalize o seu Pedido</h2>
 
             <form action="" id="order-form">
+                <div>
+                    <label>
+                        <input type="radio" name="mode" value="Normal" checked>Normal
+                    </label>
+
+                    <label>
+                        <input type="radio" name="mode" value="Personalizado">Personalizado
+                    </label>
+                </div>
+
                 <!--Seleção do Produto-->
 
                 <div>
@@ -43,7 +53,7 @@
                 </div>
 
                 <!--Escolha de Equipa-->
-                <div>
+                <div id="team-field">
                     <label for="team-select">Equipa / Clube:</label>
                     <select name="team" id="team-select">
                         <!-- As <option> serão geradas dinamicamente pelo render.js -->
@@ -89,7 +99,7 @@
 
 
                  <!--Nome/Texto para Personalizar -->
-                 <div>
+                 <div id="custom-text-field">
                     <label for="custom-text">Texto / Nome a Personalizar:</label>
                     <input type="text" id="custom-text" name="customText" placeholder="Ex: Osvaldo Suend">
                 </div>

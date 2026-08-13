@@ -50,11 +50,40 @@ if (cartSummaryContainer) {
     });
 }
 
+const modeRadios = document.querySelectorAll('input[name="mode"]')
 const teamSelect = document.getElementById('team-select')
 const customTeamWrapper = document.getElementById('custom-team-field')
 const customTeamInput = document.getElementById('custom-team')
 const productSelect = document.getElementById('product-select')
 const flavorWrapper = document.getElementById('flavor-field')
+const customTextWrapper = document.getElementById('custom-text-field')
+const fieldTeam = document.getElementById('team-field')
+
+modeRadios.forEach(radio => {
+    radio.addEventListener('change' , (e) => {
+        const mode = e.target.value
+
+        if (mode === 'Normal') {
+            // esconde equipa e texto personalizado;
+            teamSelect.disabled = true
+            teamSelect.value = ''
+            fieldTeam.style.display = 'none'
+        
+            if (customTeamWrapper) customTeamWrapper.style.display = 'none'
+            if (customTextWrapper) customTextWrapper.style.display = 'none'
+
+            // reativa produto (caso estivesse desativado por causa da equipa)
+            productSelect.disabled = false
+
+        } else {
+            //modo Personalizado: repõe tudo;
+            teamSelect.disabled = false
+            if (teamSelect.closest('div')) teamSelect.closest('div').style.display = 'block'
+
+            if (customTextWrapper) customTextWrapper.style.display = 'block'
+        }
+    })
+})
 
 if (productSelect) {
     productSelect
@@ -91,7 +120,7 @@ if (teamSelect) {
         }
     })
 }
-    
+
 
 //FormData no formulário pra ler os dados indseridos nele...
 const form = document.getElementById('order-form')
@@ -224,5 +253,6 @@ typeSelect.addEventListener('change' , (e) => {
         quantityBothField.style.display = 'none'
     }
 })
+
 
 
