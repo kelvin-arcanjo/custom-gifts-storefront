@@ -1,4 +1,4 @@
-import { cart ,  calculateTotal } from './cart.js';
+import { cart ,  calculateTotal , getItemPrice } from './cart.js';
 import { products , sizes } from './data.js';
 
 /**
@@ -14,7 +14,8 @@ export function buildOrderMessage() {
     const sizeObj = sizes.find(s => s.id === item.sizeId);
 
     // Guard clause: se não houver tamanho correspondente, pula o item
-    if (!sizeObj) return '';
+    const price = getItemPrice(item)
+    if (!price) return '';
 
     // Nome dinâmico incluindo o tipo (Caneca / Copo)
     const itemType = item.type || 'Item';
@@ -29,11 +30,11 @@ export function buildOrderMessage() {
     const customTeamText = item.customTeam ? ` (${item.customTeam})` : '';
     const customText = item.customText ? `\n   • Texto: ${item.customText}` : '';
 
-    const itemTotal = sizeObj.price * item.quantity;
+   const itemTotal = price * item.quantity;
 
     return `${index + 1}. *${productDisplay}*
    • Tamanho: ${sizeObj.label}${flavorText}${teamText}${customTeamText}${customText}
-   • Qtd: ${item.quantity} x ${sizeObj.price.toLocaleString()} Kz = *${itemTotal.toLocaleString()} Kz*`;
+   • Qtd: ${item.quantity} x ${price.toLocaleString()} Kz = *${itemTotal.toLocaleString()} Kz*`;
   }).filter(Boolean).join('\n\n');
 
   const total = calculateTotal();
