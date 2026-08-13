@@ -1,4 +1,4 @@
-import { products , sizes } from "./data.js";
+import { products, sizes, normalPrices, personalizedPrices } from "./data.js";
 
 //Estado  em memória do carrinho;
 export const cart = [];
@@ -13,7 +13,8 @@ export function addItem (formData) {
         customTeam: formData.customTeam || '',
         customText: formData.customText || '',
         type: formData.type,
-        quantity: Math.max(1 , Number(formData.quantity) || 1)
+        quantity: Math.max(1 , Number(formData.quantity) || 1),
+        mode: formData.mode
     }
 
     cart.push(newItem)
@@ -28,20 +29,25 @@ export function removeItem(cartItemId) {
   }
 }
 
+// Função auxiliar para descobrir o preço de um item individual
+export function getItemPrice(item) {
+  if (item.mode === 'Normal') {
+    return normalPrices[item.sizeId] || 0
+  }
 
-export function calculateTotal() {
-  return cart.reduce((total, item) => {
-    const sizeObj = sizes.find(s => s.id === item.sizeId);
+  const typeKey = (item.type || '').toLowerCase()
+  const dynamicKey = `${item.sizeId}-${typeKey}`
 
-    // Guard clause: se por algum motivo não houver tamanho selecionado, pula o item
-    if (!sizeObj) return total 
-
-    // Se encontrar o tamanho, usa o seu preço; caso contrário, 0;
-    const price = sizeObj ? sizeObj.price : 0;
-
-    return total + (price * item.quantity);
-    
-  }, 0);
+  return personalizedPrices[dynamicKey] || 0
 }
 
+
+// Atualização do calculateTotal para usar a getItemPrice...
+export function calculateTotal() {
+  return cart.reduce((total , item) => {
+    const price = getItemPrice(item)
+    
+    return total + (price * item.quantity)
+  },0)
+}
 

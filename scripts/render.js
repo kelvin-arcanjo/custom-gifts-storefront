@@ -1,5 +1,5 @@
-import { products , teams , sizes, types } from "./data.js";
-import { cart , calculateTotal } from "./cart.js";
+import { products , teams , sizes, types, normalPrices, personalizedPrices } from "./data.js";
+import { cart , calculateTotal , getItemPrice } from "./cart.js";
 
 export function renderProducts(productsList = products) {
     const container = document.getElementById('products-container')
@@ -11,11 +11,14 @@ export function renderProducts(productsList = products) {
         return
     }
 
-    const prices = sizes.map(size => size.price)
+    const allPrices = [
+        ...Object.values(normalPrices),
+        ...Object.values(personalizedPrices)
+    ]
 
     //Calcula o menor e o maior preço;
-    const minPrice = Math.min(...prices)
-    const maxPrice = Math.max(...prices)
+    const minPrice = Math.min(...allPrices)
+    const maxPrice = Math.max(...allPrices)
 
     container.innerHTML = productsList
         .map(product => {
@@ -131,13 +134,14 @@ export function renderCartSummary() {
     const flavorText = flavorObj ? ` - Sabor: ${flavorObj.label}` : '';
     const teamText = item.team ? ` - Equipa: ${item.team}` : '';
     const customTeamText = item.customTeam ? ` (${item.customTeam})` : '';
+    const price = getItemPrice(item)
 
     return `
       <div class="cart-item">
         <h4>${productDisplay}</h4>
         <p>Tamanho: ${sizeObj.label}${flavorText}${teamText}${customTeamText}</p>
         <p>Texto: ${item.customText || 'Nenhum'}</p>
-        <p>Qtd: ${item.quantity} x ${sizeObj.price.toLocaleString()} Kz</p>
+        <p>Qtd: ${item.quantity} x ${price.toLocaleString()} Kz</p>
         <button class="btn-remove-item" data-cart-item-id="${item.cartItemId}">Remover</button>
       </div>
     `;
@@ -158,7 +162,7 @@ export function renderSizeOptions() {
     if(!sizeSelect) return 
 
     const optionsHTML = sizes.map(size => {
-        return `<option value="${size.id}">${size.label} - ${size.price.toLocaleString()} Kz</option>`
+        return `<option value="${size.id}">${size.label}</option>`
     }).join('')
 
     sizeSelect.innerHTML = `<option value="">Selecione o Tamanho</option>${optionsHTML}`;

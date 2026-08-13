@@ -37,12 +37,6 @@ export const occasions = ['Todos', 'Casamento', 'Aniversário', 'Pessoal'];
 
 export const types = ['Caneca' , 'Copo' , 'Ambos' ];
 
-export const sizes = [
-
-        { id: 'grande', label: 'Grande', price: 5000 },
-        { id: 'pequena-2-bordas', label: 'Pequena (2 bordas)', price: 2500 },
-        { id: 'pequena-1-borda', label: 'Pequena (1 borda)', price: 2000 }
-    ]
 
 export const teams = [
   'Barcelona',
@@ -53,4 +47,25 @@ export const teams = [
   '1º de Agosto',
   'Outra (Especifique)'
 ];
+
+//Lista de tamanhos simplificada (apenas para alimentar os <select>);
+export const sizes = [
+    {id: 'pequena' , label: 'Pequena'},
+    {id: 'grande' , label: 'Grande'}
+]
+
+//Preços para o Modo Normal (baseado apenas no tamanho);
+export const normalPrices =  {
+    'pequena': 2000,
+    'grande': 4000
+}
+
+//Preços para o Modo Personalizado (baseado em tamanho-tipo);
+export const personalizedPrices = {
+    'pequena-caneca': 3000,
+    'pequena-copo': 2500,
+    'grande-caneca': 5000,
+    'grande-copo': 4500
+}
+
 
