@@ -254,5 +254,15 @@ typeSelect.addEventListener('change' , (e) => {
     }
 })
 
+//Toggle para abrir e fechar o painel do carrinho;
+const cartToggleBtn = document.getElementById('cart-toggle-btn')
+const checkoutArticle = document.getElementById('checkout-article')
+
+if (cartToggleBtn && checkoutArticle) {
+    cartToggleBtn.addEventListener('click' , () => {
+        checkoutArticle.classList.toggle('cart-panel-open')
+    })
+}
+
 
 

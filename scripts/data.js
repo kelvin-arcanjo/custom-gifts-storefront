@@ -57,7 +57,7 @@ export const sizes = [
 //Preços para o Modo Normal (baseado apenas no tamanho);
 export const normalPrices =  {
     'pequena': 2000,
-    '': 4000
+    'grande': 4000
 }
 
 //Preços para o Modo Personalizado (baseado em tamanho-tipo);

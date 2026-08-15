@@ -155,6 +155,14 @@ export function renderCartSummary() {
     const total = calculateTotal();
     totalContainer.textContent = `${total.toLocaleString()} Kz`;
   }
+
+    const cartBadge = document.getElementById('cart-badge')
+    if (cartBadge) {
+       // Soma a quantidade total de itens do array cart;
+       const totalQuantity = cart
+        .reduce((acc , item) => acc + item.quantity , 0 ) 
+        cartBadge.textContent = totalQuantity
+    }
 }
 
 export function renderSizeOptions() {

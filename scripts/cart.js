@@ -4,6 +4,7 @@ import { products, sizes, normalPrices, personalizedPrices } from "./data.js";
 export const cart = [];
 
 export function addItem (formData) {
+
     const newItem = {
         cartItemId: crypto.randomUUID(),
         productId: formData.productId,
@@ -18,7 +19,7 @@ export function addItem (formData) {
     }
 
     cart.push(newItem)
-
+    
     return newItem
 }
 
