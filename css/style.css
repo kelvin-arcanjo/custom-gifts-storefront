@@ -123,6 +123,7 @@ header p {
 .btn-primary {
     background-color: var(--success-color);
     color: #ffffff;
+    margin-top: 12px;
 }
 
 .btn-secondary {
@@ -149,6 +150,8 @@ header p {
 .btn-danger {
   background-color: var(--danger-color);
   color: #ffffff;
+  margin-top: 8px;
+  padding: 5px;
 }
 
 .btn-danger:hover {
@@ -213,11 +216,58 @@ header p {
 
 #checkout-article {
     display: none;
+    position: fixed;
+    right: 20px;
+    bottom: 98px;
+    width: min(320px , 90vw);
+    max-height: 60vh;
+    overflow-y: auto;
+    background-color: var(--bg-card);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    z-index: 998;
 }
 
 #checkout-article.cart-panel-open {
     display: block;
 }
 
+#checkout-article h2 {
+    margin-bottom: 12px;
+    background-color: var(--border-color-card);
+    padding: var(--spacing-sm);
+    border-radius: 14px;
+}
+
+.cart-item {
+    padding-bottom: var(--spacing-sm , 12px);
+    margin-bottom: var(--spacing-sm, 12px);
+    border-bottom: 1px solid var(--primary-color-dark);
+}
+
+/* Remove a linha e o espaçamento extra do último item */
+.cart-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* Contentor da secção do Total */
+.cart-total-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--spacing-md, 16px);
+  padding-top: var(--spacing-sm, 12px);
+  border-top: 2px solid var(--border-color, #444);
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.cart-total-amount {
+  color: #2ecc71;
+  font-size: 1.25rem;
+}
 
 
