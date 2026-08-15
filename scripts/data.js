@@ -3,7 +3,7 @@ export const products = [
         id: 'nocal' , 
         name: 'Nocal', 
         occasions: ['Casamento', 'Aniversário', 'Pessoal'],
-        image: 'images/cerveja.jpeg' 
+        image: 'images/cerveja.webp' 
     },
 
     {
@@ -14,21 +14,21 @@ export const products = [
             { id: 'normal', label: 'Normal' },
             { id: 'morango', label: 'Morango'}
     ],
-        image: 'images/cuca.jpeg'
+        image: 'images/personalizados.webp'
     },
 
     {
         id: 'cuca',
         name: 'Cuca',
         occasions: ['Casamento', 'Aniversário', 'Pessoal'],
-        image: 'images/cuca.jpeg'
+        image: 'images/cuca.webp'
     },
 
     {
         id: 'redbull', 
         name: 'Red Bull', 
         occasions: ['Casamento', 'Aniversário', 'Pessoal'],
-        image: 'images/cerveja.jpeg' 
+        image: 'images/personalizado4.webp' 
     },
 
 ]

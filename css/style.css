@@ -65,14 +65,89 @@ header p {
 }
 
 .product-card {
+    display: flex;
+    flex-direction: column;
     background-color: var(--bg-card);
     border: 2px solid var(--border-color-card);
     border-radius: var(--radius-md);
     text-align: center;
     transition: transform 0.2s ease , border-color 0.2s ease;
+    overflow: hidden;
 }
 
 .product-card:hover {
     transform: translateY(-4px);
     border-color: var(--primary-color-dark);
 }
+
+.product-image {
+    display: block;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    flex-grow: 1;
+    padding: var(--spacing-md);
+}
+
+.product-price {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm , 6px);
+    text-align: center;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.btn:focus-visible {
+    box-shadow: 0 0 0 3px rgba(244, 180, 26, 0.4);
+    border-color: var(--primary-color , #F4B41A);
+}
+
+.btn-secondary {
+  background-color: #b3b3b3d2;
+  border-radius: 16px;
+}
+
+.btn-secondary:hover {
+    background-color: var(--border-color-card);
+    border: 1px solid #FFFFFF;
+    color: var(--text-primary);
+    transform: translateY(-1px);
+}
+.btn-secondary:active {
+    transform: translateY(0);
+}
+
+.btn-filter {
+    background-color: var(--bg-card, #1e1e1e);
+    color: var(--text-secondary, #cccccc);
+    border: 0.1px solid #333333;
+    border-color: #FFFFFF;
+    margin: 5px;
+}
+
+.btn-filter:hover,
+.btn-filter.active {
+  background-color: var(--primary-color, #F4B41A);
+  color: #000000;
+  border-color: var(--primary-color, #F4B41A);
+}
+
+
+
