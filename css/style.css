@@ -58,6 +58,10 @@ header p {
     margin: 0 auto;
 }
 
+#catalog-section h2 {
+    margin-bottom: 15px;
+}
+
 .products-grid, #products-container {
     display: grid;
     grid-template-columns: repeat(auto-fill , minmax(220px , 1fr));

@@ -21,7 +21,7 @@ export const products = [
         id: 'cuca',
         name: 'Cuca',
         occasions: ['Casamento', 'Aniversário', 'Pessoal'],
-        image: 'images/cuca.webp'
+        image: 'images/fcbcustomized.webp'
     },
 
     {

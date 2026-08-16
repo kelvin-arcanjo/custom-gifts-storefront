@@ -118,6 +118,16 @@ if (teamSelect) {
         } else {
             productSelect.disabled = false
         }
+
+        //caso o "Outra (Especifique)" for selecionado...
+        if (customTeamWrapper) {
+            if (selectedTeam === 'Outra (Especifique)') {
+                customTeamWrapper.style.display = 'block'
+
+            } else {
+                customTeamWrapper.style.display = 'none'
+            }
+        }
     })
 }
 
