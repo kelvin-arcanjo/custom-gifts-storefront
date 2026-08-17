@@ -5,8 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Osvaldo Brindes Personalizados</title>
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Doodle+Shadow&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="images/Favicon/favicon_branding.ico" type="image/x-icon">
 <body>
     <header>
         <div class="header-title-container">
@@ -34,6 +42,46 @@
                 <button data-category="Aniversário" class="btn btn-filter">Aniversário</button>
                 <button data-category="Pessoal" class="btn btn-filter">Pessoal</button> 
             </nav>
+
+            <!-- Grelha de Produtos -->
+            <div class="products-grid">
+                <div class="product-card" id="casamento">
+                    <img src="images/marriage.webp" alt="Placa de Casamento Luxo">
+                    <h3>Casamento</h3>
+                    <p>Clique para ver detalhes</p>
+                </div>
+
+                <div class="product-card" id="brithday">
+                    <img src="images/brithday.webp" alt="Placa de Aniversário">
+                    <h3>Aniversário</h3>
+                    <p>Clique para ver detalhes</p>
+                </div>
+
+                <div class="product-card" id="person"">
+                    <img src="images/person.webp" alt="Placa Pessoal">
+                    <h3>Pessoal _ Nome & Foto</h3>
+                    <p>Clique para ver detalhes</p>
+                </div>
+
+                
+                <div class="product-card" data-category="pessoal" id="personalized">
+                    <img src="images/fcbcustomized.webp" alt="Placa Pessoal">
+                    <h3>Personalizadas</h3>
+                    <p>Clique para ver detalhes</p>
+                </div>
+            </div>
+
+    <!-- Modal de Detalhes do Produto -->
+    <div class="product-modal" id="productModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <img id="modalImg" src="" alt="Produto">
+            <h2 id="modalTitle"></h2>
+            <p id="modalDesc"></p>
+        </div>
+    </div>
+
+
 
             <!--Contentor onde o rende.js desenhar os cards dos produtos-->
             <div id="products-container"></div>
@@ -149,7 +197,18 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 Osvaldo Brindes</p>
+        <p>&copy; 2026 Osvaldo Brindes Personalizados</p>
+        <div class="footer-socials">
+            <a href="https://www.instagram.com/osvaldobrindes/" target="_blank" class="social-link" aria-label="Instagram">
+                <span class="social-icon icon-instagram"></span>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61579430715602" target="_blank" class="social-link" aria-label="facebook">
+                <span class="social-icon icon-facebook"></span>
+            </a>
+            <a href="https://www.tiktok.com/@osvaldobp_" target="_blank" class="social-link" aria-label="tiktok">
+                <span class="social-icon icon-tiktok"></span>
+            </a>
+        </div>
     </footer>
 
     <!-- Botão Flutuante do Carrinho (FAB) -->

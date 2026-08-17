@@ -55,10 +55,14 @@ header-title-container {
 }
 
 header h1 {
+    font-family: "Rubik Doodle Shadow", system-ui;
     font-size: 2.5em;
+    font-weight: 400;
+    font-style: normal;
 }
 
 header p {
+    font-family: "Outfit", sans-serif;;
     font-weight: bold;
     margin-top: 10px;
     color: var(--primary-color-dark);
@@ -115,6 +119,28 @@ header p {
     object-position: center;
 }
 
+.product-card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover; 
+  display: block;
+}
+
+/* Cartão Destacado (quando selecionado pelo filtro) */
+.product-card.highlighted {
+  border-color: #ffc107;
+  transform: scale(1.03);
+  box-shadow: 0 0 15px rgba(255, 193, 7, 0.4);
+  opacity: 1;
+}
+
+/* Cartões Não Selecionados (Suaves em segundo plano) */
+.product-card.dimmed {
+  opacity: 0.35;
+  transform: scale(0.97);
+  border-color: transparent;
+}
+
 .product-info {
     display: flex;
     flex-direction: column;
@@ -125,7 +151,68 @@ header p {
 
 .product-price {
     color: var(--primary-color);
-    font-size: 1.1rem;
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.product-card.hide {
+    display: none;
+    opacity: 0;
+    transform: scale(0.9);
+    pointer-events: none;
+}
+
+.product-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+}
+
+.product-modal.show {
+    display: flex;
+    animation: fadeInModal 0.3s ease forwards;
+}
+
+.modal-content {
+    background-color: #121212;
+    border: 1px solid #ffc107;
+    border-radius: 12px;
+    padding: 24px;
+    max-width: 450px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    color: #fff;
+}
+
+.modal-content img {
+    width: 100%;
+    max-height: 250px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    color: #ffc107;
+    cursor: pointer;
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .btn {
@@ -364,6 +451,62 @@ footer {
     padding: var(--spacing-xl);
     margin-top: 20px;
     text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+footer p {
+    margin-bottom: 20px;
+    font-family: "Black Ops One", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.footer-socials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    z-index: 1;
+}
+
+.footer-socials a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icon {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  background-color: #ffc107;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+
+.icon-instagram {
+    -webkit-mask: url('../images/icons/instagram.svg') no-repeat center / contain;
+    mask: url('../images/icons/instagram.svg') no-repeat center / contain;
+}
+
+.icon-facebook {
+    -webkit-mask: url('../images/icons/facebook.svg') no-repeat center / contain;
+    mask: url('../images/icons/facebook.svg') no-repeat center / contain;
+}
+
+.icon-tiktok {
+    -webkit-mask: url('../images/icons/tik-tok.svg') no-repeat center / contain;
+    mask: url('../images/icons/tik-tok.svg') no-repeat center / contain;
+}
+
+.social-icon:hover {
+    background-color: #ffffff;
+    transform: translateY(-3px);
 }
 
 footer::after {

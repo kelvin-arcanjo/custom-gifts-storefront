@@ -2,33 +2,33 @@ export const products = [
     {
         id: 'nocal' , 
         name: 'Nocal', 
-        occasions: ['Casamento', 'Aniversário', 'Pessoal'],
-        image: 'images/cerveja.webp' 
+        occasions: ['', '', ''],
+        image: 'images/nocal.webp' 
     },
 
     {
-        id: 'booster',
-        name: 'Booster',
-        occasions: ['Casamento', 'Aniversário', 'Pessoal'],
+        id: 'allproducts',
+        name: 'Diversos',
+        occasions: ['', '', ''],
         flavors: [
             { id: 'normal', label: 'Normal' },
             { id: 'morango', label: 'Morango'}
     ],
-        image: 'images/personalizados.webp'
+        image: 'images/allproducts.webp'
     },
 
     {
         id: 'cuca',
         name: 'Cuca',
-        occasions: ['Casamento', 'Aniversário', 'Pessoal'],
-        image: 'images/fcbcustomized.webp'
+        occasions: ['', '', ''],
+        image: 'images/cuca.webp'
     },
 
     {
-        id: 'redbull', 
-        name: 'Red Bull', 
-        occasions: ['Casamento', 'Aniversário', 'Pessoal'],
-        image: 'images/personalizado4.webp' 
+        id: 'eka', 
+        name: 'Eka', 
+        occasions: ['', '', ''],
+        image: 'images/cerveja.webp' 
     },
 
 ]

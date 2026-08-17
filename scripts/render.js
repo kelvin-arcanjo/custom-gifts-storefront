@@ -113,6 +113,10 @@ export function renderCartSummary() {
   if (cart.length === 0) {
     summaryContainer.innerHTML = '<p>O seu carrinho está vazio.</p>';
     if (totalContainer) totalContainer.textContent = '0 Kz'
+
+    const cartBadge = document.getElementById('cart-badge')
+    if (cartBadge) cartBadge.textContent = '0'
+    
     return;
   }
 
