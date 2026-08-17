@@ -5,11 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Osvaldo Brindes Personalizados</title>
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-      <h1>Osvaldo Brindes Personalizados</h1>
-      <p>Torne o seu evento único, porque o seu Brinde merece ser único!</p>
+        <div class="header-title-container">
+            <img
+              src="images/branding5_radius.webp"
+              alt="Caneca Ícone"
+              class="header-cup-img"
+            >
+            <div>
+              <h1>Osvaldo Brindes Personalizados</h1>
+              <p>Torne o seu evento único, porque o seu Brinde merece ser único!</p>
+            </div>
+        </div>
     </header>
 
     <main>
@@ -34,19 +44,19 @@
             <h2>Personalize o seu Pedido</h2>
 
             <form action="" id="order-form">
-                <div>
-                    <label>
-                        <input type="radio" name="mode" value="Normal" checked>Normal
+                <div id="divSelect">
+                    <label id="normal">
+                        <input type="radio" name="mode" value=" Normal" checked>  Normal
                     </label>
 
-                    <label>
-                        <input type="radio" name="mode" value="Personalizado">Personalizado
+                    <label id="personalizado">
+                        <input type="radio" name="mode" value="Personalizado">  Personalizado
                     </label>
                 </div>
 
                 <!--Seleção do Produto-->
 
-                <div>
+                <div class="form-group">
                     <label for="product-select">Marca:</label>
                     <select name="productId" id="product-select" required>
                         <!--Opções serão careegadas dinamicamente via JS-->
@@ -54,7 +64,7 @@
                 </div>
 
                 <!--Escolha de Equipa-->
-                <div id="team-field" style="display: none;">
+                <div id="team-field" style="display: none;" class="form-group">
                     <label for="team-select">Equipa / Clube:</label>
                     <select name="team" id="team-select">
                         <!-- As <option> serão geradas dinamicamente pelo render.js -->
@@ -63,19 +73,19 @@
 
                 
                 <!-- Campo condicional se escolher "Outra" -->
-                <div id="custom-team-field" style="display: none">
+                <div id="custom-team-field" style="display: none" class="form-group">
                     <label for="custom-team">Nome da Equipa:</label>
                     <input type="text" id="custom-team" name="customTeam" placeholder="Ex.:Juventus">
                 </div>
                 
-                <div>
+                <div class="form-group">
                     <label for="type-select">Tipo:</label>
                     <select name="type" id="type-select" required>
                     <!-- Preenchido dinamicamente pelo render.js -->
                     </select>
                 </div>
 
-                 <div id="quantity-both-field" style="display: none">
+                 <div id="quantity-both-field" style="display: none" class="form-group">
                     <label for="quantityCanecas">Qtd. Canecas:</label>
                     <input type="number" id="quantityCanecas" name="quantityCanecas" min="0" value="0">
 
@@ -83,7 +93,7 @@
                     <input type="number" id="quantityCopos" name="quantityCopos" min="0" value="0">
                 </div>
 
-                <div>
+                <div class="form-group">
                     <label for="size-select">Tamanho:</label>
                     <select name="sizeId" id="size-select">
                         <!-- Preenchido dinamicamente pelo render.js -->
@@ -91,7 +101,7 @@
                 </div>
                 
 
-                <div id="flavor-field"  style = "display: none">
+                <div id="flavor-field"  style = "display: none" class="form-group">
                     <label for="flavor-select">Sabor:</label>
                     <select name="flavorId" id="flavor-select">
                         <!-- Preenchido dinamicamente, só visível se o produto tiver sabores -->
@@ -100,19 +110,19 @@
 
 
                  <!--Nome/Texto para Personalizar -->
-                 <div id="custom-text-field" style="display: none;">
+                 <div id="custom-text-field" style="display: none;" class="form-group">
                     <label for="custom-text">Texto / Nome a Personalizar:</label>
                     <input type="text" id="custom-text" name="customText" placeholder="Ex: Osvaldo Suend">
                 </div>
 
                 <!--Quantidade -->
-                <div id="quantity-normal-field">
+                <div id="quantity-normal-field" class="form-group">
                     <label for="quantity">Quantidade:</label>
                     <input type="number" id="quantity" name="quantity" value="1" min="1">
                 </div>
 
                 <!-- Botão de submissão -->
-                <button type="submit">Adicionar ao Carrinho</button>
+                <button type="submit" id="addCart">Adicionar ao Carrinho</button>
             </form>
          </section>
 
