@@ -127,8 +127,8 @@ export function renderCartSummary() {
     // Guard clause: exige apenas o tamanho para conseguir renderizar o preço
     if (!sizeObj) return '';
 
-    // Nome dinâmico: se houver produto/marca usa-o, senão usa o nome genérico
-  const productDisplay = item.productId === 'Outra (Especifique)' && item.customProduct
+  const itemType = item.type || 'Item'; 
+  const productDisplay = item.productId === 'outra' && item.customProduct
     ? `${item.customProduct} (${itemType})`
     : product
         ? `${product.name} (${itemType})`

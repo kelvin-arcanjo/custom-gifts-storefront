@@ -94,6 +94,34 @@ header p {
     margin-top: var(--spacing-md);
 }
 
+.products-grid .product-card h3 {
+    padding: 8px;
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+.products-grid .product-card button {
+    background-color:  #b3b3b3d2;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 16px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: none;
+}
+
+.products-grid .product-card button:hover {
+    background-color: #1e1e1e;
+    border: 0.95px solid white;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.clickOnFiltersButton {
+  border: 2px solid white !important;
+  box-shadow: 0 0 12px rgba(255, 193, 7, 0.5);
+}
+
 .product-card {
     display: flex;
     flex-direction: column;

@@ -220,24 +220,31 @@ function selectProductAndScroll(productId) {
     }
 }
 
-const categoryFilters = document.getElementById('category-filters')
+const categoryFilters = document.getElementById('category-filters');
 
 if (categoryFilters) {
-    categoryFilters.addEventListener('click' , (e) => {
-        const buttonFilters = e.target.closest('[data-category]')
-        if(!buttonFilters) return
+  categoryFilters.addEventListener('click', (e) => {
+    // 1. Identifica o botão clicado
+    const buttonFilter = e.target.closest('[data-category]');
+    if (!buttonFilter) return;
 
-        const category = buttonFilters.dataset.category
+    // 2. Lê a categoria em minúsculas (ex: "casamento", "aniversario", "pessoal", "todos")
+    const category = buttonFilter.dataset.category.toLowerCase();
 
-        if (category === 'Todos') {
-            renderProducts(products)
+    // 3. Remove a borda de destaque de TODOS os cartões antes de aplicar no novo
+    const allCards = document.querySelectorAll('.product-card');
+    allCards.forEach(card => card.classList.remove('clickOnFiltersButton'));
 
-        } else {
-            const filtered = products
-                .filter(product => product.occasions && product.occasions.includes(category))
-                renderProducts(filtered)
-        }
-    })
+    // 4. Se for "Todos", sai sem aplicar borda
+    if (category === 'todos') return;
+
+    // 5. targetCard pega o elemento do cartão cujo id é igual à categoria
+    const targetCard = document.getElementById(category);
+
+    if (targetCard) {
+      targetCard.classList.add('clickOnFiltersButton');
+    }
+  });
 }
 
 function resetFormState() {

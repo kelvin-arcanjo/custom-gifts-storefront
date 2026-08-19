@@ -17,7 +17,7 @@ export function buildOrderMessage() {
     const price = getItemPrice(item)
     if (!price) return '';
 
-    // Nome dinâmico incluindo o tipo (Caneca / Copo)
+    const itemType = item.type || 'Item'; 
     const productDisplay = item.productId === 'outra' && item.customProduct
     ? `${item.customProduct} (${itemType})`
     : product
@@ -31,7 +31,7 @@ export function buildOrderMessage() {
     const customTeamText = item.customTeam ? ` (${item.customTeam})` : '';
     const customText = item.customText ? `\n   • Texto: ${item.customText}` : '';
 
-   const itemTotal = price * item.quantity;
+    const itemTotal = price * item.quantity;
 
     return `${index + 1}. *${productDisplay}*
    • Tamanho: ${sizeObj.label}${flavorText}${teamText}${customTeamText}${customText}
