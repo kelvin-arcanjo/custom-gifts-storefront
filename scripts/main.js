@@ -191,21 +191,59 @@ form
 
 //Envio ao whatsapp;
 const whatsappBtn = document.getElementById('whatsapp-btn')
+const checkoutDialog = document.getElementById('checkout-dialog')
+const dialogCancelBtn = document.getElementById('dialog-cancel-btn')
+const checkoutDialogForm = document.getElementById('checkout-dialog-form')
 
 whatsappBtn.addEventListener('click' , () => {
     if (cart.length === 0) {
         alert('Adicione pelo menos um item ao carrinho antes de enviar o pedido')
 
     } else {
-        const link = getWhatsappLink()
-        window.open(link, '_blank')
+        checkoutDialog.showModal()
     }
 })
+
+if (dialogCancelBtn) {
+    dialogCancelBtn.addEventListener('click' , () => {
+        checkoutDialog.close()
+    })
+}
+
+if (checkoutDialogForm) {
+    checkoutDialogForm.addEventListener('submit' , (event) => {
+        event.preventDefault()
+
+        const name = document.getElementById('customer-name').value.trim()
+        const address = document.getElementById('customer-address').value.trim()
+
+        if (!name || !address) {
+            alert('Por favor preencha o nome e o local de entrega.')
+            
+            return
+        }
+
+        const link = getWhatsappLink(name , address)
+        window.open(link , '_blank')
+        checkoutDialog.close()
+        checkoutDialogForm.reset()
+    })
+}
 
 // Função auxiliar para selecionar o produto no formulário e fazer scroll suave;
 function selectProductAndScroll(productId) {
     const productSelectForScroll = document.getElementById('product-select')
     const customSection = document.getElementById('customization-section')
+
+    // Restore Normal mode + re-enable selects, undoing any gallery-button state...
+    const normalRadio = document.querySelector('input[name="mode"][value="Normal"]')
+
+    if (normalRadio) {
+        normalRadio.checked = true
+        normalRadio.dispatchEvent(new Event('change'))
+    }
+
+    if (teamSelect) teamSelect.disabled = false
 
     if (productSelectForScroll) {
         productSelectForScroll.value = productId

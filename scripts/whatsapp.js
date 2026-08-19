@@ -6,23 +6,28 @@ import { products , sizes } from './data.js';
  * @returns {string} Texto formatado do pedido.
  */
 
-export function buildOrderMessage() {
+export function buildOrderMessage(customerName = '', customerAddress = '') {
   if (cart.length === 0) return '';
 
+  let header = '*Novo Pedido - Osvaldo Brindes* 🛒\n\n';
+  if (customerName) header += `*Cliente:* ${customerName}\n`;
+  if (customerAddress) header += `*Entrega:* ${customerAddress}\n`;
+  header += '\n';
+
   const itemsList = cart.map((item, index) => {
-    const product = products.find(p => p.id === item.productId);
-    const sizeObj = sizes.find(s => s.id === item.sizeId);
+  const product = products.find(p => p.id === item.productId);
+  const sizeObj = sizes.find(s => s.id === item.sizeId);
 
-    // Guard clause: se não houver tamanho correspondente, pula o item
-    const price = getItemPrice(item)
-    if (!price) return '';
+  // Guard clause: se não houver tamanho correspondente, pula o item
+  const price = getItemPrice(item)
+  if (!price) return '';
 
-    const itemType = item.type || 'Item'; 
-    const productDisplay = item.productId === 'outra' && item.customProduct
+  const itemType = item.type || 'Item'; 
+  const productDisplay = item.productId === 'outra' && item.customProduct
     ? `${item.customProduct} (${itemType})`
     : product
-        ? `${product.name} (${itemType})`
-        : `${itemType} Personalizado(a)`;
+      ? `${product.name} (${itemType})`
+      : `${itemType} Personalizado(a)`;
 
     // Detalhes opcionais
     const flavorObj = product?.flavors?.find(f => f.id === item.flavorId);
@@ -40,14 +45,14 @@ export function buildOrderMessage() {
 
   const total = calculateTotal();
 
-  return `*Novo Pedido - Osvaldo Brindes* 🛒\n\n${itemsList}\n\n*Total do Pedido:* ${total.toLocaleString()} Kz`;
+  return `${header}${itemsList}\n\n*Total do Pedido:* ${total.toLocaleString()} Kz`;;
 }
 
 const WHATSAPP_NUMBER = '244943567154'
 
-export function getWhatsappLink() {
-    const message =  buildOrderMessage()
-    const encodedMessage = encodeURIComponent(message)
+export function getWhatsappLink(customerName, customerAddress) {
+  const message =  buildOrderMessage(customerName, customerAddress)
+  const encodedMessage = encodeURIComponent(message)
 
-    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`
 }

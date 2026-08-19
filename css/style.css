@@ -84,6 +84,8 @@ header p {
 }
 
 #catalog-section h2 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.85rem;
     margin-bottom: 15px;
 }
 
@@ -547,6 +549,72 @@ footer::after {
     height: 100%;
     pointer-events: none;
 }
+
+#checkout-dialog {
+    width: min(400px, 90vw);
+    background-color: white;
+    color: rgba(34, 127, 150, 0.582);
+    padding: var(--spacing-lg);
+    border: 1px solid var(--border-color-card);
+    border-radius: var(--radius-md);
+    margin: auto;
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    border: 1px solid #25D366;
+}
+
+#checkout-dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+}
+
+#checkout-dialog h2 {
+    margin-bottom: var(--spacing-md);
+}
+
+#checkout-dialog .form-group label {
+    font-weight: bold;
+    color: #095e28;
+}
+
+.dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+}
+
+.dialog-actions #dialog-cancel-btn {
+    margin: 4px;
+    padding: 6px;
+    border-radius: 5px;
+}
+
+.dialog-actions #dialog-confirm-btn {
+    margin: 4px;
+    padding: 6px;
+    border-radius: 5px;
+}
+
+#checkout-dialog #customer-name {
+    width: 50%;
+    background-color: rgba(244, 180, 26, 0.4);
+    color: black;
+    padding: 4px;
+    border: 1px solid var(--primary-color);
+    border-radius: 4px;
+}
+
+#checkout-dialog #customer-address {
+    width: 50%;
+    background-color: rgba(244, 180, 26, 0.4);
+    color: black;
+    padding: 4px;
+    border: 1px solid var(--primary-color);
+    border-radius: 4px;
+}
+
 
 
 

@@ -14,6 +14,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="images/Favicon/favicon_branding.ico" type="image/x-icon">
 <body>
     <header>
@@ -48,26 +51,26 @@
                 <div class="product-card" id="casamento">
                     <img src="images/marriage.webp" alt="Placa de Casamento">
                     <h3>Casamento</h3>
-                    <button>Personalizar</button>
+                    <button class="gallery-personalizar-btn">Personalizar</button>
                 </div>
 
                 <div class="product-card" id="aniversario">
                     <img src="images/brithday.webp" alt="Placa de Aniversário">
                     <h3>Aniversário</h3>
-                    <button>Personalizar</button>
+                    <button class="gallery-personalizar-btn">Personalizar</button>
                 </div>
 
                 <div class="product-card" id="pessoal">
                     <img src="images/person.webp" alt="Placa Pessoal">
                     <h3>Pessoal _ Nome & Foto</h3>
-                   <button>Personalizar</button>
+                   <button class="gallery-personalizar-btn">Personalizar</button>
                 </div>
 
                 
                 <div class="product-card" data-category="pessoal" id="personalized">
                     <img src="images/fcbcustomized.webp" alt="Placa Pessoal">
                     <h3>Personalizadas</h3>
-                    <button>Personalizar</button>
+                    <button class="gallery-team-btn">Personalizar</button>
                 </div>
             </div>
 
@@ -94,7 +97,7 @@
             <form action="" id="order-form">
                 <div id="divSelect">
                     <label id="normal">
-                        <input type="radio" name="mode" value=" Normal" checked>  Normal
+                        <input type="radio" name="mode" value="Normal" checked>  Normal
                     </label>
 
                     <label id="personalizado">
@@ -195,7 +198,7 @@
             <!--Botão pra finalizar o pedido ... via whatsapp-->
 
             <button id="whatsapp-btn" type="button" class="btn btn-primary">
-                Enviar Pedido
+                Confirmar Pedido
             </button>
         </article>
 
@@ -222,7 +225,29 @@
         <span id="cart-badge" class="cart-badge">0</span>
     </button>
 
+    <dialog id="checkout-dialog">
+        <form method="dialog" id="checkout-dialog-form">
+            <h2>Finalizar Pedido</h2>
+
+            <div class="form-group">
+                <label for="customer-name">Digite o seu nome:</label>
+                <input type="text" id="customer-name" placeholder="Ex.:Osvaldo Suend" required>
+            </div>
+
+            <div class="form-group">
+                <label for="customer-address">Morada / Local de entrega:</label>
+                <input type="text" id="customer-address" placeholder="Ex.: Morro Bento, Luanda" required>
+            </div>
+
+            <div class="dialog-actions">
+                <button type="button" id="dialog-cancel-btn" class="btn btn-secondary">Cancelar</button>
+                <button type="submit" id="dialog-confirm-btn" class="btn btn-primary">Enviar</button>
+            </div>
+        </form>
+    </dialog>
+
    <script type="module" src="/scripts/main.js"></script>
+   <script type="module" src="/scripts/filters.js"></script>
 
 </body>
 </html>
