@@ -61,7 +61,7 @@ export function renderProductOptions() {
             return `<option value="${product.id}">${product.name}</option>`
     }).join('')
 
-    select.innerHTML = `<option value="">-- Selecione um produto --</option>` + productOptions
+   select.innerHTML = `<option value="">-- Selecione um produto --</option>` + productOptions + `<option value="outra">Outra (Especifique)</option>`
 }
     //Renderiza as opções do <select id="team-select"></select>;
 
@@ -128,10 +128,11 @@ export function renderCartSummary() {
     if (!sizeObj) return '';
 
     // Nome dinâmico: se houver produto/marca usa-o, senão usa o nome genérico
-    const itemType = item.type || 'Item';
-    const productDisplay = product
-    ? `${product.name} (${itemType})` 
-    : `${itemType} Personalizado(a)`;
+  const productDisplay = item.productId === 'Outra (Especifique)' && item.customProduct
+    ? `${item.customProduct} (${itemType})`
+    : product
+        ? `${product.name} (${itemType})`
+        : `${itemType} Personalizado(a)`;
 
     // Optional chaining no flavors (seguro caso product seja undefined)
     const flavorObj = product?.flavors?.find(f => f.id === item.flavorId);

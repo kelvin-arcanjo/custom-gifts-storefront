@@ -18,10 +18,11 @@ export function buildOrderMessage() {
     if (!price) return '';
 
     // Nome dinâmico incluindo o tipo (Caneca / Copo)
-    const itemType = item.type || 'Item';
-    const productDisplay = product 
-      ? `${product.name} (${itemType})` 
-      : `${itemType} Personalizado(a)`;
+    const productDisplay = item.productId === 'outra' && item.customProduct
+    ? `${item.customProduct} (${itemType})`
+    : product
+        ? `${product.name} (${itemType})`
+        : `${itemType} Personalizado(a)`;
 
     // Detalhes opcionais
     const flavorObj = product?.flavors?.find(f => f.id === item.flavorId);

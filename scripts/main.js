@@ -85,6 +85,8 @@ modeRadios.forEach(radio => {
     })
 })
 
+const customProductWrapper = document.getElementById('custom-product-field')
+
 if (productSelect) {
     productSelect
         .addEventListener('change' , (e) => {
@@ -100,6 +102,10 @@ if (productSelect) {
 
             } else {
                 teamSelect.disabled = false
+            }
+
+            if (customProductWrapper) {
+                customProductWrapper.style.display = (selectedProductId === 'outra') ? 'block' : 'none'
             }
     })
 }
