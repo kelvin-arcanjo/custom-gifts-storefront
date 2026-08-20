@@ -16,6 +16,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="images/Favicon/favicon_branding.ico" type="image/x-icon">
 <body>
@@ -51,25 +54,29 @@
                 <div class="product-card" id="casamento">
                     <img src="images/marriage.webp" alt="Placa de Casamento">
                     <h3>Casamento</h3>
+                    <p class="ocassions">Personalize ao seu critério...</p>
                     <button class="gallery-personalizar-btn">Personalizar</button>
                 </div>
 
                 <div class="product-card" id="aniversario">
                     <img src="images/brithday.webp" alt="Placa de Aniversário">
                     <h3>Aniversário</h3>
+                    <p class="ocassions">Personalize ao seu critério...</p>
                     <button class="gallery-personalizar-btn">Personalizar</button>
                 </div>
 
                 <div class="product-card" id="pessoal">
                     <img src="images/person.webp" alt="Placa Pessoal">
                     <h3>Pessoal _ Nome & Foto</h3>
-                   <button class="gallery-personalizar-btn">Personalizar</button>
+                    <p class="ocassions">Personalize ao seu critério...</p>
+                    <button class="gallery-personalizar-btn">Personalizar</button>
                 </div>
 
                 
                 <div class="product-card" data-category="pessoal" id="personalized">
                     <img src="images/fcbcustomized.webp" alt="Placa Pessoal">
                     <h3>Personalizadas</h3>
+                    <p class="ocassions">Personalize ao seu critério...</p>
                     <button class="gallery-team-btn">Personalizar</button>
                 </div>
             </div>
@@ -86,7 +93,7 @@
 
 
 
-            <!--Contentor onde o rende.js desenhar os cards dos produtos-->
+            <!--Contentor onde o render.js desenhar os cards dos produtos-->
             <div id="products-container"></div>
         </section>
 
@@ -151,7 +158,7 @@
 
                 <div class="form-group">
                     <label for="size-select">Tamanho:</label>
-                    <select name="sizeId" id="size-select">
+                    <select name="sizeId" id="size-select" required>
                         <!-- Preenchido dinamicamente pelo render.js -->
                     </select>
                 </div>
@@ -246,8 +253,8 @@
         </form>
     </dialog>
 
-   <script type="module" src="/scripts/main.js"></script>
-   <script type="module" src="/scripts/filters.js"></script>
+   <script type="module" src="/scripts/main.js" defer></script>
+   <script type="module" src="/scripts/filters.js" defer></script>
 
 </body>
 </html>
