@@ -232,6 +232,8 @@ if (checkoutDialogForm) {
 
 // Função auxiliar para selecionar o produto no formulário e fazer scroll suave;
 function selectProductAndScroll(productId) {
+    const occasionInput = document.getElementById('occasion-input')
+    if (occasionInput) occasionInput.value = ''
     const productSelectForScroll = document.getElementById('product-select')
     const customSection = document.getElementById('customization-section')
 

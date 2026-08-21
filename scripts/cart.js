@@ -8,6 +8,7 @@ export function addItem (formData) {
     const newItem = {
         cartItemId: crypto.randomUUID(),
         productId: formData.productId,
+        occasion: formData.occasion || '',
         sizeId: formData.sizeId,
         flavorId: formData.flavorId || null,
         team: formData.team,

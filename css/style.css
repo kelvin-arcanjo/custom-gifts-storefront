@@ -325,7 +325,7 @@ header p {
 .cart-fab {
     position: fixed;
     right: 20px;
-    bottom: 150px;
+    bottom: 140px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -367,7 +367,7 @@ header p {
     display: none;
     position: fixed;
     right: 20px;
-    bottom: 98px;
+    bottom: 200px;
     width: min(320px , 90vw);
     max-height: 60vh;
     overflow-y: auto;
@@ -384,7 +384,8 @@ header p {
 
 #checkout-article h2 {
     margin-bottom: 12px;
-    background-color: var(--border-color-card);
+    background-color: white;
+    color: #095e28;
     padding: var(--spacing-sm);
     border-radius: 14px;
 }

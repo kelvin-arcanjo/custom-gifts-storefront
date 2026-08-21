@@ -121,8 +121,10 @@ export function renderCartSummary() {
   }
 
   const html = cart.map((item) => {
+    const occasionText = item.occasion ? ` - Ocasião: ${item.occasion}` : '';
     const product = products.find(p => p.id === item.productId);
     const sizeObj = sizes.find(s => s.id === item.sizeId);
+    
 
     // Guard clause: exige apenas o tamanho para conseguir renderizar o preço
     if (!sizeObj) return '';
@@ -144,7 +146,7 @@ export function renderCartSummary() {
     return `
       <div class="cart-item">
         <h4>${productDisplay}</h4>
-        <p>Tamanho: ${sizeObj.label}${flavorText}${teamText}${customTeamText}</p>
+        <p>Tamanho: ${sizeObj.label}${flavorText}${teamText}${customTeamText}${occasionText}</p>
         <p>Texto: ${item.customText || 'Nenhum'}</p>
         <p>Qtd: ${item.quantity} x ${price.toLocaleString()} Kz</p>
         <button class="btn btn-danger btn-remove-item" data-cart-item-id="${item.cartItemId}">Remover</button>
